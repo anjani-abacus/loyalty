@@ -1,0 +1,26 @@
+import express from 'express';
+import authRoutes from '../auth/routes.js';
+import couponRoutes from '../coupon/routes.js';
+import masterRoutes from '../master/routes.js';
+import redeemRoutes from '../redeem/routes.js';
+import notificationRoutes from '../notifications/routes.js';
+import instaRoutes from '../insta/routes.js';
+import streakRoutes from '../streak/routes.js';
+import leaderboardRoutes from '../leaderboard/route.js';
+import ticketRouter from '../ticket/routes/route.js';
+import dealerRouter from '../dealerlist/routes/dealerRoutes.js';
+import spinRouter from '../spin&win/route.js';
+const router = express.Router();
+
+router.use('/', authRoutes);
+router.use('/', couponRoutes);
+router.use('/', masterRoutes);
+router.use('/', redeemRoutes);
+router.use('/', notificationRoutes);
+router.use('/', instaRoutes );
+router.use('/',streakRoutes);
+router.use('/',leaderboardRoutes);
+router.use('/',ticketRouter);
+router.use('/',dealerRouter);
+router.use('/',spinRouter);
+export default router;

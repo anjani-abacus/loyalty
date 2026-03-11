@@ -1,0 +1,54 @@
+use_frameworks! :linkage => :static
+# or remove this line completely if you don’t need frameworks
+# (recommended if possible)
+
+def node_require(script)
+  require Pod::Executable.execute_command('node', ['-p',
+    'require.resolve("' + script + '", {paths: [process.argv[1]]})',
+    __dir__
+  ]).strip
+end
+
+node_require('react-native/scripts/react_native_pods.rb')
+node_require('react-native-permissions/scripts/setup.rb')
+
+platform :ios, '15.6'
+prepare_react_native_project!
+
+setup_permissions([
+  'Camera',
+  'Notifications',
+  'PhotoLibrary',
+])
+
+target 'starkpaints' do
+  config = use_native_modules!
+
+  # IMPORTANT FIX: Firebase + use_frameworks
+  use_modular_headers!
+
+  use_react_native!(
+    :path => config[:reactNativePath],
+    :hermes_enabled => false,
+    :app_path => "#{Pod::Config.instance.installation_root}/.."
+  )
+
+  target 'starkpaintsTests' do
+    inherit! :complete
+  end
+
+  post_install do |installer|
+    react_native_post_install(
+      installer,
+      config[:reactNativePath],
+      :mac_catalyst_enabled => false
+    )
+
+    # Fix for FirebaseCore not found
+    installer.pods_project.targets.each do |t|
+      t.build_configurations.each do |config|
+        config.build_settings['CLANG_MODULES_AUTOLINK'] = 'YES'
+      end
+    end
+  end
+end

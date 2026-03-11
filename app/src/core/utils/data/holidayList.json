@@ -1,0 +1,40 @@
+{
+    "holidays": [
+        {
+            "id": 118,
+            "date_created": "2025-07-02",
+            "holiday_type": "National",
+            "holiday_month": 1,
+            "holiday_year": 2025,
+            "holiday_day": "Sunday",
+            "state": "",
+            "holiday_date": "2025-01-26",
+            "holiday_title": "Republic Day",
+            "del": 0
+        },
+        {
+            "id": 119,
+            "date_created": "2025-07-02",
+            "holiday_type": "National",
+            "holiday_month": 8,
+            "holiday_year": 2025,
+            "holiday_day": "Friday",
+            "state": "",
+            "holiday_date": "2025-08-15",
+            "holiday_title": "Independance Day",
+            "del": 0
+        },
+        {
+            "id": 120,
+            "date_created": "2025-07-02",
+            "holiday_type": "National",
+            "holiday_month": 10,
+            "holiday_year": 2025,
+            "holiday_day": "Thursday",
+            "state": "",
+            "holiday_date": "2025-10-02",
+            "holiday_title": "Gandhi Jayanti",
+            "del": 0
+        }
+    ]
+}

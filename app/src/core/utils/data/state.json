@@ -1,0 +1,115 @@
+{
+    "statusMsg": "Success",
+    "statusCode": 200,
+    "case": "",
+    "all_state": [
+        {
+            "state_name": "ANDAMAN AND NICOBAR ISLANDS"
+        },
+        {
+            "state_name": "ANDHRA PRADESH"
+        },
+        {
+            "state_name": "ARUNACHAL PRADESH"
+        },
+        {
+            "state_name": "ASSAM"
+        },
+        {
+            "state_name": "BIHAR"
+        },
+        {
+            "state_name": "CHANDIGARH"
+        },
+        {
+            "state_name": "CHHATTISGARH"
+        },
+        {
+            "state_name": "DELHI"
+        },
+        {
+            "state_name": "GOA"
+        },
+        {
+            "state_name": "GUJARAT"
+        },
+        {
+            "state_name": "HARYANA"
+        },
+        {
+            "state_name": "HIMACHAL PRADESH"
+        },
+        {
+            "state_name": "JAMMU AND KASHMIR"
+        },
+        {
+            "state_name": "JHARKHAND"
+        },
+        {
+            "state_name": "KARNATAKA"
+        },
+        {
+            "state_name": "KERALA"
+        },
+        {
+            "state_name": "LADAKH"
+        },
+        {
+            "state_name": "LAKSHADWEEP"
+        },
+        {
+            "state_name": "MADHYA PRADESH"
+        },
+        {
+            "state_name": "MAHARASHTRA"
+        },
+        {
+            "state_name": "MANIPUR"
+        },
+        {
+            "state_name": "MEGHALAYA"
+        },
+        {
+            "state_name": "MIZORAM"
+        },
+        {
+            "state_name": "NAGALAND"
+        },
+        {
+            "state_name": "ODISHA"
+        },
+        {
+            "state_name": "PUDUCHERRY"
+        },
+        {
+            "state_name": "PUNJAB"
+        },
+        {
+            "state_name": "RAJASTHAN"
+        },
+        {
+            "state_name": "SIKKIM"
+        },
+        {
+            "state_name": "TAMIL NADU"
+        },
+        {
+            "state_name": "TELANGANA"
+        },
+        {
+            "state_name": "THE DADRA AND NAGAR HAVELI AND DAMAN AND DIU"
+        },
+        {
+            "state_name": "TRIPURA"
+        },
+        {
+            "state_name": "UTTAR PRADESH"
+        },
+        {
+            "state_name": "UTTARAKHAND"
+        },
+        {
+            "state_name": "WEST BENGAL"
+        }
+    ]
+}

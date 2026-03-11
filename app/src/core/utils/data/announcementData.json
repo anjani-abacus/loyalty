@@ -1,0 +1,53 @@
+{
+    "result": [
+        {
+            "id": 6,
+            "notice_id": 4,
+            "read_status": 1,
+            "date_created": "2025-07-10",
+            "msg": "The standard gray color code is #808080. This corresponds to an RGB value of (128, 128, 128), meaning it has equal parts of red, green, and blue, which creates a neutral gray. ",
+            "created_by_name": "Admin"
+        },
+        {
+            "id": 16,
+            "notice_id": 4,
+            "read_status": 0,
+            "date_created": "2025-07-10",
+            "msg": "Testing Notification 1",
+            "created_by_name": "Admin"
+        },
+        {
+            "id": 17,
+            "notice_id": 4,
+            "read_status": 0,
+            "date_created": "2025-07-16",
+            "msg": "Testing Notification 2",
+            "created_by_name": "Admin"
+        },
+        {
+            "id": 18,
+            "notice_id": 4,
+            "read_status": 0,
+            "date_created": "2025-07-11",
+            "msg": "Testing Notification 3",
+            "created_by_name": "Admin"
+        },
+        {
+            "id": 19,
+            "notice_id": 4,
+            "read_status": 1,
+            "date_created": "2025-07-15",
+            "msg": "Testing Notification 4",
+            "created_by_name": "Admin"
+        },
+        {
+            "id": 20,
+            "notice_id": 4,
+            "read_status": 1,
+            "date_created": "2025-07-13",
+            "msg": "Testing Notification 5",
+            "created_by_name": "Admin"
+        }
+
+    ]
+}

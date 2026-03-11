@@ -1,0 +1,35 @@
+{
+     "basicinfo":{
+      "mobileNumber": "9718286467",
+      "userName": "John Doe",
+      "userType": "dealer",
+      "referralCode": "REF123",
+      "dateOfBirth": "2015-09-09",
+      "emailId": "anju@gmail.com",
+      "addressInfo": {
+            "country": "India",
+            "address": "Dabua-Colony",
+            "pincode": "121101",
+            "stateName": "Delhi",
+            "districtName": "NewDelhi",
+            "city": "New Delhi",
+            "area": "Tyagi-market"
+      }
+    },
+      "otherDetail": {
+            "dealerDetail":{
+            "name": "rajesh",
+            "mobile": "9718286467",
+            "distributerName": "rajesh"
+            }
+        },
+      "PaymentInfo": {
+            "documentNo": "123412341234",
+            "documentType": "AADHAR",
+            "upi": "9718286467@paytm",
+            "name": "Anjani",
+            "accountNumber": "1234567899876",
+            "bankName": "BOB",
+            "ifscCode": "IFSCINR0000"
+      }
+}

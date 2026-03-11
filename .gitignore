@@ -1,0 +1,47 @@
+# Node modules
+node_modules/
+**/node_modules/
+
+# Environment files
+.env
+**/.env
+.env.local
+.env.*.local
+
+# Build outputs
+dist/
+build/
+**/dist/
+**/build/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Claude memory (don't commit)
+.claude/
+
+# Service account / credentials files
+**/firebase-service-account.json
+**/*service-account*.json
+**/*credentials*.json
+
+# React Native
+app/ios/Pods/
+app/android/build/
+app/android/.gradle/
+app/android/app/build/
+app/.expo/
+
+# Prisma
+**/prisma/migrations/
+

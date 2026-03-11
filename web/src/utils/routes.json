@@ -1,0 +1,79 @@
+{
+  "user": {
+    "name": "Anjani",
+    "email": "anjani@basiq360.in",
+    "avatar": "/avatars/shadcn.jpg"
+  },
+  "navMain": [
+    {
+      "title": "Influencer Network",
+      "url": "#",
+      "icon": "SquareTerminal",
+      "isActive": true,
+      "items": [
+        {
+          "title": "Contractor",
+          "url": "#"
+        },
+        {
+          "title": "Carpenter",
+          "url": "#"
+        }
+      ]
+    },
+    {
+      "title": "Bonus",
+      "url": "#",
+      "icon": "Bot",
+      "items": [
+        {
+          "title": "Bonus Point",
+          "url": "#"
+        },
+        {
+          "title": "Spin & Win",
+          "url": "#"
+        },
+        {
+          "title": "Badges",
+          "url": "#"
+        }
+      ]
+    },
+    {
+      "title": "Masters",
+      "url": "#",
+      "icon": "BookOpen",
+      "items": [
+        {
+          "title": "Users",
+          "url": "/users"
+        },
+        {
+          "title": "Products",
+          "url": "/product"
+        },
+        {
+          "title": "Category",
+          "url": "/category"
+        },
+        {
+          "title": "Point Category",
+          "url": "/point-category"
+        },
+        {
+          "title": "Designation & Role",
+          "url": "/designation-and-role"
+        },
+        {
+          "title": "Referral Point Master",
+          "url": "/referral-point-master"
+        },
+        {
+          "title": "Pdf Catalogue",
+          "url": "/pdf"
+        }
+      ]
+    }
+  ]
+}

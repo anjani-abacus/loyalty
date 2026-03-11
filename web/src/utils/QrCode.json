@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "date_created": "2025-09-10T10:15:00Z",
+    "created_by_name": "Anjani Nagar",
+    "coupon_code": "WELCOME100",
+    "product_detail": "Premium Subscription Plan",
+    "remark": "First-time customer coupon"
+  },
+  {
+    "id": 2,
+    "date_created": "2025-09-11T12:30:00Z",
+    "created_by_name": "Pankaj Sharma",
+    "coupon_code": "FREESHIP",
+    "product_detail": "Electronics - Wireless Mouse",
+    "remark": "Free shipping applied"
+  },
+  {
+    "id": 3,
+    "date_created": "2025-09-12T14:45:00Z",
+    "created_by_name": "",
+    "coupon_code": "DISCOUNT20",
+    "product_detail": "Clothing - T-shirt",
+    "remark": "20% discount applied"
+  },
+  {
+    "id": 4,
+    "date_created": "2025-09-13T09:20:00Z",
+    "created_by_name": "System",
+    "coupon_code": "FLASH50",
+    "product_detail": "Shoes - Limited Edition",
+    "remark": "Flash sale coupon"
+  },
+  {
+    "id": 5,
+    "date_created": "2025-09-14T17:00:00Z",
+    "created_by_name": "Admin",
+    "coupon_code": "LOYALTY15",
+    "product_detail": "Grocery - Monthly Essentials",
+    "remark": "Loyalty reward coupon"
+  }
+]

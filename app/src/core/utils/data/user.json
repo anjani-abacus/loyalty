@@ -1,0 +1,39 @@
+  {
+    "mobileNumber": "8860773585",
+    "userType": "Karigar",
+    "userName": "test name",
+    "referralCode": "2342342",
+    "addressInfo": {
+      "address": "test asdf address",
+      "pincode": "112020",
+      "state": "ANDHRA PRADESH",
+      "district": "CENTRAL",
+      "city": "test city",
+      "area": "test area"
+    },
+    "dealerDetail": {
+      "name": "test dealer",
+      "mobile": "9823749387",
+      "distributorName": "test dist name"
+    },
+    "otherInformation": {
+      "redemptionPreference":"Via Bank",
+      "dateOfBirth": "02-02-2001",
+      "emailId": "test@gmail.com",
+      "documents": {
+        "adharCard": "987654321123",
+        "drivingLicense": "DL1420110012345",
+        "voterId": "ABC1234567",
+        "panCard": "ITJPK7373C"
+      },
+      "bankInformation": {
+        "upi": "testuser@upi",
+        "name": "test holder name",
+        "accountNumber": "84746474747",
+        "bankName": "State Bank of India",
+        "ifscCode": "SBIN0001234",
+        "chequeBook": "123456",
+        "passBook": "123456789012"
+      }
+    }
+  }

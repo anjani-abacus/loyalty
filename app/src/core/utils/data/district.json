@@ -1,0 +1,40 @@
+{
+    "statusMsg": "Success",
+    "statusCode": 200,
+    "case": "",
+    "all_district": [
+        {
+            "district_name": "CENTRAL"
+        },
+        {
+            "district_name": "EAST"
+        },
+        {
+            "district_name": "NEW DELHI"
+        },
+        {
+            "district_name": "NORTH"
+        },
+        {
+            "district_name": "NORTH EAST"
+        },
+        {
+            "district_name": "NORTH WEST"
+        },
+        {
+            "district_name": "SHAHDARA"
+        },
+        {
+            "district_name": "SOUTH"
+        },
+        {
+            "district_name": "South East"
+        },
+        {
+            "district_name": "SOUTH WEST"
+        },
+        {
+            "district_name": "WEST"
+        }
+    ]
+}

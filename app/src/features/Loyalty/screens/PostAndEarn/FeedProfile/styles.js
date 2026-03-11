@@ -1,0 +1,155 @@
+import { StyleSheet } from 'react-native';
+
+export const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#F8F9FE',
+    },
+    header: {
+        paddingHorizontal: 20,
+        paddingTop: 50,
+        paddingBottom: 25,
+    },
+    headerTitle: {
+        fontSize: 18,
+        fontWeight: '500',
+        color: '#FFFFFF',
+        marginVertical: 8,
+        textShadowColor: 'rgba(0,0,0,0.1)',
+        textShadowOffset: { width: 0, height: 1 },
+        textShadowRadius: 2,
+    },
+    subtitleText: {
+        fontSize: 16,
+        fontWeight: '500',
+        color: '#fff',
+    },
+    subTitle: {
+        color: '#eee',
+    },
+    listContainer: {
+        padding: 16,
+        paddingTop: 8,
+    },
+    row: {
+        justifyContent: 'space-between',
+    },
+    postContainer: {
+        marginBottom: 18,
+        borderRadius: 10,
+        overflow: 'hidden',
+        backgroundColor: '#FFFFFF',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 3,
+    },
+    imageContainer: {
+        position: 'relative',
+    },
+    postImage: {
+        width: '100%',
+        height: 160,
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10,
+    },
+    imageOverlay: {
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        height: 60,
+        borderBottomLeftRadius: 0,
+        borderBottomRightRadius: 0,
+    },
+    postContent: {
+        padding: 14,
+        position: 'relative',
+        zIndex: 2,
+    },
+    authorSection: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 10,
+    },
+    authorAvatar: {
+        width: 28,
+        height: 28,
+        borderRadius: 14,
+        backgroundColor: '#FF6B6B',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginRight: 8,
+    },
+    avatarText: {
+        color: '#FFFFFF',
+        fontSize: 12,
+        fontWeight: '700',
+    },
+    authorInfo: {
+        flex: 1,
+    },
+    authorName: {
+        fontSize: 13,
+        fontWeight: '600',
+        color: '#2C3E50',
+        marginBottom: 1,
+    },
+    timeAgo: {
+        fontSize: 11,
+        color: '#95A5A6',
+        fontWeight: '500',
+    },
+    description: {
+        fontSize: 13,
+        lineHeight: 18,
+        marginBottom: 12,
+        fontWeight: '500',
+        color: '#34495E',
+    },
+    actionRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+    },
+    likeButton: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingVertical: 3,
+        paddingHorizontal: 12,
+        backgroundColor: 'rgba(255,107,107,0.1)',
+        borderRadius: 25,
+        borderWidth: 1,
+        flex: 1,
+        justifyContent: 'center',
+        borderColor: 'rgba(255,107,107,0.2)',
+    },
+    likeButtonActive: {
+        backgroundColor: '#FF6B6B',
+        borderColor: '#FF6B6B',
+    },
+    likeIcon: {
+        fontSize: 16,
+        marginRight: 5,
+    },
+    likeCount: {
+        fontSize: 13,
+        fontWeight: '700',
+    },
+    shareButton: {
+        width: 36,
+        height: 36,
+        borderRadius: 18,
+        backgroundColor: 'rgba(69,183,209,0.1)',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderWidth: 1,
+        borderColor: 'rgba(69,183,209,0.2)',
+    },
+    shareIcon: {
+        fontSize: 18,
+        color: '#45B7D1',
+        fontWeight: '600',
+    },
+});

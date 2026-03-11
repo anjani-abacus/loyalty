@@ -1,0 +1,10 @@
+export {default as en} from './en.json';
+export {default as hn} from './hn.json';
+export {default as od} from './od.json';
+export {default as tel} from './tel.json';
+export {default as tml} from './tml.json';
+export {default as bng} from './bng.json';
+export {default as mal} from './mal.json';
+export {default as marathi} from './marathi.json';
+export {default as punjabi} from './punjabi.json';
+export {default as gujarati} from './gujarati.json';

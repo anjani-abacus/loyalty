@@ -1,0 +1,25 @@
+{
+    "statusMsg": "Success",
+    "statusCode": 200,
+    "case": "",
+    "result": [
+        {
+            "id": 508,
+            "org_id": 91,
+            "date_created": "2025-05-05 16:34:51",
+            "created_by": 1,
+            "created_by_name": "admin",
+            "type": 508,
+            "module_name": "Karigar",
+            "distribution_type": "Influencer",
+            "checkin": 0,
+            "order_by": 0,
+            "company_name_flag": 0,
+            "scan_limit": 1000000,
+            "loyalty_base": 0,
+            "limit_type": "Daily",
+            "del": 0
+        }
+    ],
+    "redeemption_prefrence": 2
+}

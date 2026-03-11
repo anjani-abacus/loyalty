@@ -1,0 +1,906 @@
+{
+    "statusMsg": "Success",
+    "statusCode": 200,
+    "case": "",
+    "gift_master_list": [
+        {
+            "id": "829",
+            "org_id": "9",
+            "date_created": "2025-03-22 10:57:44",
+            "created_by": "39",
+            "created_by_name": "Advance Ply",
+            "gift_type": "Gift",
+            "title": "Test Gift",
+            "gift_point": "1",
+            "gift_img": "67de4a500769f.png",
+            "termsNcondition": "Test Gift",
+            "range_start": "0",
+            "range_end": "0",
+            "point_range_value": "0",
+            "status": "0",
+            "last_status_changed_on": "2025-04-02 09:42:16",
+            "status_changed_by": "39",
+            "status_changed_by_name": "Advance Ply",
+            "date_from": "0000-00-00",
+            "date_to": "0000-00-00",
+            "gift_reward": "",
+            "del": "0",
+            "item": [
+                {
+                    "id": "976",
+                    "org_id": "9",
+                    "gift_gallery_id": "829",
+                    "influencer_type": "",
+                    "user_type": "Influencer",
+                    "del": "0"
+                }
+            ]
+        },
+        {
+            "id": "755",
+            "org_id": "9",
+            "date_created": "2025-02-19 15:38:22",
+            "created_by": "9",
+            "created_by_name": "Advance Ply",
+            "gift_type": "Gift",
+            "title": "Bajaj Pulsar 125 Bike",
+            "gift_point": "200000",
+            "gift_img": "",
+            "termsNcondition": "",
+            "range_start": "0",
+            "range_end": "0",
+            "point_range_value": "0",
+            "status": "1",
+            "last_status_changed_on": "2025-02-19 15:38:22",
+            "status_changed_by": "9",
+            "status_changed_by_name": "Advance Ply",
+            "date_from": "0000-00-00",
+            "date_to": "0000-00-00",
+            "gift_reward": "",
+            "del": "0",
+            "item": [
+                {
+                    "id": "901",
+                    "org_id": "9",
+                    "gift_gallery_id": "755",
+                    "influencer_type": "Contractor",
+                    "user_type": "influencer",
+                    "del": "0"
+                },
+                {
+                    "id": "902",
+                    "org_id": "9",
+                    "gift_gallery_id": "755",
+                    "influencer_type": "Carpenter",
+                    "user_type": "influencer",
+                    "del": "0"
+                }
+            ]
+        },
+        {
+            "id": "754",
+            "org_id": "9",
+            "date_created": "2025-02-19 15:38:22",
+            "created_by": "9",
+            "created_by_name": "Advance Ply",
+            "gift_type": "Gift",
+            "title": "Honda Activa 6G Scooty",
+            "gift_point": "180000",
+            "gift_img": "",
+            "termsNcondition": "",
+            "range_start": "0",
+            "range_end": "0",
+            "point_range_value": "0",
+            "status": "1",
+            "last_status_changed_on": "2025-02-19 15:38:22",
+            "status_changed_by": "9",
+            "status_changed_by_name": "Advance Ply",
+            "date_from": "0000-00-00",
+            "date_to": "0000-00-00",
+            "gift_reward": "",
+            "del": "0",
+            "item": [
+                {
+                    "id": "899",
+                    "org_id": "9",
+                    "gift_gallery_id": "754",
+                    "influencer_type": "Contractor",
+                    "user_type": "influencer",
+                    "del": "0"
+                },
+                {
+                    "id": "900",
+                    "org_id": "9",
+                    "gift_gallery_id": "754",
+                    "influencer_type": "Carpenter",
+                    "user_type": "influencer",
+                    "del": "0"
+                }
+            ]
+        },
+        {
+            "id": "753",
+            "org_id": "9",
+            "date_created": "2025-02-19 15:38:22",
+            "created_by": "9",
+            "created_by_name": "Advance Ply",
+            "gift_type": "Gift",
+            "title": "Honda SP 125",
+            "gift_point": "175000",
+            "gift_img": "",
+            "termsNcondition": "",
+            "range_start": "0",
+            "range_end": "0",
+            "point_range_value": "0",
+            "status": "1",
+            "last_status_changed_on": "2025-02-19 15:38:22",
+            "status_changed_by": "9",
+            "status_changed_by_name": "Advance Ply",
+            "date_from": "0000-00-00",
+            "date_to": "0000-00-00",
+            "gift_reward": "",
+            "del": "0",
+            "item": [
+                {
+                    "id": "897",
+                    "org_id": "9",
+                    "gift_gallery_id": "753",
+                    "influencer_type": "Contractor",
+                    "user_type": "influencer",
+                    "del": "0"
+                },
+                {
+                    "id": "898",
+                    "org_id": "9",
+                    "gift_gallery_id": "753",
+                    "influencer_type": "Carpenter",
+                    "user_type": "influencer",
+                    "del": "0"
+                }
+            ]
+        },
+        {
+            "id": "752",
+            "org_id": "9",
+            "date_created": "2025-02-19 15:38:22",
+            "created_by": "9",
+            "created_by_name": "Advance Ply",
+            "gift_type": "Gift",
+            "title": "Premium Double Door Refrigerator (Side-by-Side)",
+            "gift_point": "160000",
+            "gift_img": "",
+            "termsNcondition": "",
+            "range_start": "0",
+            "range_end": "0",
+            "point_range_value": "0",
+            "status": "1",
+            "last_status_changed_on": "2025-02-19 15:38:22",
+            "status_changed_by": "9",
+            "status_changed_by_name": "Advance Ply",
+            "date_from": "0000-00-00",
+            "date_to": "0000-00-00",
+            "gift_reward": "",
+            "del": "0",
+            "item": [
+                {
+                    "id": "895",
+                    "org_id": "9",
+                    "gift_gallery_id": "752",
+                    "influencer_type": "Contractor",
+                    "user_type": "influencer",
+                    "del": "0"
+                },
+                {
+                    "id": "896",
+                    "org_id": "9",
+                    "gift_gallery_id": "752",
+                    "influencer_type": "Carpenter",
+                    "user_type": "influencer",
+                    "del": "0"
+                }
+            ]
+        },
+        {
+            "id": "751",
+            "org_id": "9",
+            "date_created": "2025-02-19 15:38:22",
+            "created_by": "9",
+            "created_by_name": "Advance Ply",
+            "gift_type": "Gift",
+            "title": "2 Ton Inverter AC",
+            "gift_point": "150000",
+            "gift_img": "",
+            "termsNcondition": "",
+            "range_start": "0",
+            "range_end": "0",
+            "point_range_value": "0",
+            "status": "1",
+            "last_status_changed_on": "2025-02-19 15:38:22",
+            "status_changed_by": "9",
+            "status_changed_by_name": "Advance Ply",
+            "date_from": "0000-00-00",
+            "date_to": "0000-00-00",
+            "gift_reward": "",
+            "del": "0",
+            "item": [
+                {
+                    "id": "893",
+                    "org_id": "9",
+                    "gift_gallery_id": "751",
+                    "influencer_type": "Contractor",
+                    "user_type": "influencer",
+                    "del": "0"
+                },
+                {
+                    "id": "894",
+                    "org_id": "9",
+                    "gift_gallery_id": "751",
+                    "influencer_type": "Carpenter",
+                    "user_type": "influencer",
+                    "del": "0"
+                }
+            ]
+        },
+        {
+            "id": "750",
+            "org_id": "9",
+            "date_created": "2025-02-19 15:38:22",
+            "created_by": "9",
+            "created_by_name": "Advance Ply",
+            "gift_type": "Gift",
+            "title": "Premium Massage Chair",
+            "gift_point": "145000",
+            "gift_img": "",
+            "termsNcondition": "",
+            "range_start": "0",
+            "range_end": "0",
+            "point_range_value": "0",
+            "status": "1",
+            "last_status_changed_on": "2025-02-19 15:38:22",
+            "status_changed_by": "9",
+            "status_changed_by_name": "Advance Ply",
+            "date_from": "0000-00-00",
+            "date_to": "0000-00-00",
+            "gift_reward": "",
+            "del": "0",
+            "item": [
+                {
+                    "id": "891",
+                    "org_id": "9",
+                    "gift_gallery_id": "750",
+                    "influencer_type": "Contractor",
+                    "user_type": "influencer",
+                    "del": "0"
+                },
+                {
+                    "id": "892",
+                    "org_id": "9",
+                    "gift_gallery_id": "750",
+                    "influencer_type": "Carpenter",
+                    "user_type": "influencer",
+                    "del": "0"
+                }
+            ]
+        },
+        {
+            "id": "749",
+            "org_id": "9",
+            "date_created": "2025-02-19 15:38:22",
+            "created_by": "9",
+            "created_by_name": "Advance Ply",
+            "gift_type": "Gift",
+            "title": "High-End Home Theater System",
+            "gift_point": "140000",
+            "gift_img": "",
+            "termsNcondition": "",
+            "range_start": "0",
+            "range_end": "0",
+            "point_range_value": "0",
+            "status": "1",
+            "last_status_changed_on": "2025-02-19 15:38:22",
+            "status_changed_by": "9",
+            "status_changed_by_name": "Advance Ply",
+            "date_from": "0000-00-00",
+            "date_to": "0000-00-00",
+            "gift_reward": "",
+            "del": "0",
+            "item": [
+                {
+                    "id": "889",
+                    "org_id": "9",
+                    "gift_gallery_id": "749",
+                    "influencer_type": "Contractor",
+                    "user_type": "influencer",
+                    "del": "0"
+                },
+                {
+                    "id": "890",
+                    "org_id": "9",
+                    "gift_gallery_id": "749",
+                    "influencer_type": "Carpenter",
+                    "user_type": "influencer",
+                    "del": "0"
+                }
+            ]
+        },
+        {
+            "id": "748",
+            "org_id": "9",
+            "date_created": "2025-02-19 15:38:22",
+            "created_by": "9",
+            "created_by_name": "Advance Ply",
+            "gift_type": "Gift",
+            "title": "Luxury Recliner Sofa",
+            "gift_point": "135000",
+            "gift_img": "",
+            "termsNcondition": "",
+            "range_start": "0",
+            "range_end": "0",
+            "point_range_value": "0",
+            "status": "1",
+            "last_status_changed_on": "2025-02-19 15:38:22",
+            "status_changed_by": "9",
+            "status_changed_by_name": "Advance Ply",
+            "date_from": "0000-00-00",
+            "date_to": "0000-00-00",
+            "gift_reward": "",
+            "del": "0",
+            "item": [
+                {
+                    "id": "887",
+                    "org_id": "9",
+                    "gift_gallery_id": "748",
+                    "influencer_type": "Contractor",
+                    "user_type": "influencer",
+                    "del": "0"
+                },
+                {
+                    "id": "888",
+                    "org_id": "9",
+                    "gift_gallery_id": "748",
+                    "influencer_type": "Carpenter",
+                    "user_type": "influencer",
+                    "del": "0"
+                }
+            ]
+        },
+        {
+            "id": "747",
+            "org_id": "9",
+            "date_created": "2025-02-19 15:38:22",
+            "created_by": "9",
+            "created_by_name": "Advance Ply",
+            "gift_type": "Gift",
+            "title": "75-inch Smart LED TV",
+            "gift_point": "105000",
+            "gift_img": "",
+            "termsNcondition": "",
+            "range_start": "0",
+            "range_end": "0",
+            "point_range_value": "0",
+            "status": "1",
+            "last_status_changed_on": "2025-02-19 15:38:22",
+            "status_changed_by": "9",
+            "status_changed_by_name": "Advance Ply",
+            "date_from": "0000-00-00",
+            "date_to": "0000-00-00",
+            "gift_reward": "",
+            "del": "0",
+            "item": [
+                {
+                    "id": "885",
+                    "org_id": "9",
+                    "gift_gallery_id": "747",
+                    "influencer_type": "Contractor",
+                    "user_type": "influencer",
+                    "del": "0"
+                },
+                {
+                    "id": "886",
+                    "org_id": "9",
+                    "gift_gallery_id": "747",
+                    "influencer_type": "Carpenter",
+                    "user_type": "influencer",
+                    "del": "0"
+                }
+            ]
+        },
+        {
+            "id": "746",
+            "org_id": "9",
+            "date_created": "2025-02-19 15:38:22",
+            "created_by": "9",
+            "created_by_name": "Advance Ply",
+            "gift_type": "Gift",
+            "title": "Modular Sofa Set",
+            "gift_point": "95000",
+            "gift_img": "",
+            "termsNcondition": "",
+            "range_start": "0",
+            "range_end": "0",
+            "point_range_value": "0",
+            "status": "1",
+            "last_status_changed_on": "2025-02-19 15:38:22",
+            "status_changed_by": "9",
+            "status_changed_by_name": "Advance Ply",
+            "date_from": "0000-00-00",
+            "date_to": "0000-00-00",
+            "gift_reward": "",
+            "del": "0",
+            "item": [
+                {
+                    "id": "883",
+                    "org_id": "9",
+                    "gift_gallery_id": "746",
+                    "influencer_type": "Contractor",
+                    "user_type": "influencer",
+                    "del": "0"
+                },
+                {
+                    "id": "884",
+                    "org_id": "9",
+                    "gift_gallery_id": "746",
+                    "influencer_type": "Carpenter",
+                    "user_type": "influencer",
+                    "del": "0"
+                }
+            ]
+        },
+        {
+            "id": "745",
+            "org_id": "9",
+            "date_created": "2025-02-19 15:38:22",
+            "created_by": "9",
+            "created_by_name": "Advance Ply",
+            "gift_type": "Gift",
+            "title": "High-End Automatic Dishwasher",
+            "gift_point": "85000",
+            "gift_img": "",
+            "termsNcondition": "",
+            "range_start": "0",
+            "range_end": "0",
+            "point_range_value": "0",
+            "status": "1",
+            "last_status_changed_on": "2025-02-19 15:38:22",
+            "status_changed_by": "9",
+            "status_changed_by_name": "Advance Ply",
+            "date_from": "0000-00-00",
+            "date_to": "0000-00-00",
+            "gift_reward": "",
+            "del": "0",
+            "item": [
+                {
+                    "id": "881",
+                    "org_id": "9",
+                    "gift_gallery_id": "745",
+                    "influencer_type": "Contractor",
+                    "user_type": "influencer",
+                    "del": "0"
+                },
+                {
+                    "id": "882",
+                    "org_id": "9",
+                    "gift_gallery_id": "745",
+                    "influencer_type": "Carpenter",
+                    "user_type": "influencer",
+                    "del": "0"
+                }
+            ]
+        },
+        {
+            "id": "744",
+            "org_id": "9",
+            "date_created": "2025-02-19 15:38:22",
+            "created_by": "9",
+            "created_by_name": "Advance Ply",
+            "gift_type": "Gift",
+            "title": "65-inch Smart LED TV",
+            "gift_point": "80000",
+            "gift_img": "",
+            "termsNcondition": "",
+            "range_start": "0",
+            "range_end": "0",
+            "point_range_value": "0",
+            "status": "1",
+            "last_status_changed_on": "2025-02-19 15:38:22",
+            "status_changed_by": "9",
+            "status_changed_by_name": "Advance Ply",
+            "date_from": "0000-00-00",
+            "date_to": "0000-00-00",
+            "gift_reward": "",
+            "del": "0",
+            "item": [
+                {
+                    "id": "879",
+                    "org_id": "9",
+                    "gift_gallery_id": "744",
+                    "influencer_type": "Contractor",
+                    "user_type": "influencer",
+                    "del": "0"
+                },
+                {
+                    "id": "880",
+                    "org_id": "9",
+                    "gift_gallery_id": "744",
+                    "influencer_type": "Carpenter",
+                    "user_type": "influencer",
+                    "del": "0"
+                }
+            ]
+        },
+        {
+            "id": "743",
+            "org_id": "9",
+            "date_created": "2025-02-19 15:38:22",
+            "created_by": "9",
+            "created_by_name": "Advance Ply",
+            "gift_type": "Gift",
+            "title": "55-inch Smart LED TV",
+            "gift_point": "70000",
+            "gift_img": "",
+            "termsNcondition": "",
+            "range_start": "0",
+            "range_end": "0",
+            "point_range_value": "0",
+            "status": "1",
+            "last_status_changed_on": "2025-02-19 15:38:22",
+            "status_changed_by": "9",
+            "status_changed_by_name": "Advance Ply",
+            "date_from": "0000-00-00",
+            "date_to": "0000-00-00",
+            "gift_reward": "",
+            "del": "0",
+            "item": [
+                {
+                    "id": "877",
+                    "org_id": "9",
+                    "gift_gallery_id": "743",
+                    "influencer_type": "Contractor",
+                    "user_type": "influencer",
+                    "del": "0"
+                },
+                {
+                    "id": "878",
+                    "org_id": "9",
+                    "gift_gallery_id": "743",
+                    "influencer_type": "Carpenter",
+                    "user_type": "influencer",
+                    "del": "0"
+                }
+            ]
+        },
+        {
+            "id": "742",
+            "org_id": "9",
+            "date_created": "2025-02-19 15:38:22",
+            "created_by": "9",
+            "created_by_name": "Advance Ply",
+            "gift_type": "Gift",
+            "title": "Double Door Refrigerator (Large)",
+            "gift_point": "60000",
+            "gift_img": "",
+            "termsNcondition": "",
+            "range_start": "0",
+            "range_end": "0",
+            "point_range_value": "0",
+            "status": "1",
+            "last_status_changed_on": "2025-02-19 15:38:22",
+            "status_changed_by": "9",
+            "status_changed_by_name": "Advance Ply",
+            "date_from": "0000-00-00",
+            "date_to": "0000-00-00",
+            "gift_reward": "",
+            "del": "0",
+            "item": [
+                {
+                    "id": "875",
+                    "org_id": "9",
+                    "gift_gallery_id": "742",
+                    "influencer_type": "Contractor",
+                    "user_type": "influencer",
+                    "del": "0"
+                },
+                {
+                    "id": "876",
+                    "org_id": "9",
+                    "gift_gallery_id": "742",
+                    "influencer_type": "Carpenter",
+                    "user_type": "influencer",
+                    "del": "0"
+                }
+            ]
+        },
+        {
+            "id": "741",
+            "org_id": "9",
+            "date_created": "2025-02-19 15:38:22",
+            "created_by": "9",
+            "created_by_name": "Advance Ply",
+            "gift_type": "Gift",
+            "title": "Split Air Conditioner (1 Ton)",
+            "gift_point": "50000",
+            "gift_img": "",
+            "termsNcondition": "",
+            "range_start": "0",
+            "range_end": "0",
+            "point_range_value": "0",
+            "status": "1",
+            "last_status_changed_on": "2025-02-19 15:38:22",
+            "status_changed_by": "9",
+            "status_changed_by_name": "Advance Ply",
+            "date_from": "0000-00-00",
+            "date_to": "0000-00-00",
+            "gift_reward": "",
+            "del": "0",
+            "item": [
+                {
+                    "id": "873",
+                    "org_id": "9",
+                    "gift_gallery_id": "741",
+                    "influencer_type": "Contractor",
+                    "user_type": "influencer",
+                    "del": "0"
+                },
+                {
+                    "id": "874",
+                    "org_id": "9",
+                    "gift_gallery_id": "741",
+                    "influencer_type": "Carpenter",
+                    "user_type": "influencer",
+                    "del": "0"
+                }
+            ]
+        },
+        {
+            "id": "740",
+            "org_id": "9",
+            "date_created": "2025-02-19 15:38:22",
+            "created_by": "9",
+            "created_by_name": "Advance Ply",
+            "gift_type": "Gift",
+            "title": "Home Theater System",
+            "gift_point": "45000",
+            "gift_img": "",
+            "termsNcondition": "",
+            "range_start": "0",
+            "range_end": "0",
+            "point_range_value": "0",
+            "status": "1",
+            "last_status_changed_on": "2025-02-19 15:38:22",
+            "status_changed_by": "9",
+            "status_changed_by_name": "Advance Ply",
+            "date_from": "0000-00-00",
+            "date_to": "0000-00-00",
+            "gift_reward": "",
+            "del": "0",
+            "item": [
+                {
+                    "id": "871",
+                    "org_id": "9",
+                    "gift_gallery_id": "740",
+                    "influencer_type": "Contractor",
+                    "user_type": "influencer",
+                    "del": "0"
+                },
+                {
+                    "id": "872",
+                    "org_id": "9",
+                    "gift_gallery_id": "740",
+                    "influencer_type": "Carpenter",
+                    "user_type": "influencer",
+                    "del": "0"
+                }
+            ]
+        },
+        {
+            "id": "739",
+            "org_id": "9",
+            "date_created": "2025-02-19 15:38:22",
+            "created_by": "9",
+            "created_by_name": "Advance Ply",
+            "gift_type": "Gift",
+            "title": "Branded Recliner Chair",
+            "gift_point": "40000",
+            "gift_img": "",
+            "termsNcondition": "",
+            "range_start": "0",
+            "range_end": "0",
+            "point_range_value": "0",
+            "status": "1",
+            "last_status_changed_on": "2025-02-19 15:38:22",
+            "status_changed_by": "9",
+            "status_changed_by_name": "Advance Ply",
+            "date_from": "0000-00-00",
+            "date_to": "0000-00-00",
+            "gift_reward": "",
+            "del": "0",
+            "item": [
+                {
+                    "id": "869",
+                    "org_id": "9",
+                    "gift_gallery_id": "739",
+                    "influencer_type": "Contractor",
+                    "user_type": "influencer",
+                    "del": "0"
+                },
+                {
+                    "id": "870",
+                    "org_id": "9",
+                    "gift_gallery_id": "739",
+                    "influencer_type": "Carpenter",
+                    "user_type": "influencer",
+                    "del": "0"
+                }
+            ]
+        },
+        {
+            "id": "738",
+            "org_id": "9",
+            "date_created": "2025-02-19 15:38:22",
+            "created_by": "9",
+            "created_by_name": "Advance Ply",
+            "gift_type": "Gift",
+            "title": "43-inch Smart LED TV",
+            "gift_point": "38000",
+            "gift_img": "",
+            "termsNcondition": "",
+            "range_start": "0",
+            "range_end": "0",
+            "point_range_value": "0",
+            "status": "1",
+            "last_status_changed_on": "2025-02-19 15:38:22",
+            "status_changed_by": "9",
+            "status_changed_by_name": "Advance Ply",
+            "date_from": "0000-00-00",
+            "date_to": "0000-00-00",
+            "gift_reward": "",
+            "del": "0",
+            "item": [
+                {
+                    "id": "867",
+                    "org_id": "9",
+                    "gift_gallery_id": "738",
+                    "influencer_type": "Contractor",
+                    "user_type": "influencer",
+                    "del": "0"
+                },
+                {
+                    "id": "868",
+                    "org_id": "9",
+                    "gift_gallery_id": "738",
+                    "influencer_type": "Carpenter",
+                    "user_type": "influencer",
+                    "del": "0"
+                }
+            ]
+        },
+        {
+            "id": "737",
+            "org_id": "9",
+            "date_created": "2025-02-19 15:38:22",
+            "created_by": "9",
+            "created_by_name": "Advance Ply",
+            "gift_type": "Gift",
+            "title": "Washing Machine (Fully Automatic)",
+            "gift_point": "36000",
+            "gift_img": "",
+            "termsNcondition": "",
+            "range_start": "0",
+            "range_end": "0",
+            "point_range_value": "0",
+            "status": "1",
+            "last_status_changed_on": "2025-02-19 15:38:22",
+            "status_changed_by": "9",
+            "status_changed_by_name": "Advance Ply",
+            "date_from": "0000-00-00",
+            "date_to": "0000-00-00",
+            "gift_reward": "",
+            "del": "0",
+            "item": [
+                {
+                    "id": "865",
+                    "org_id": "9",
+                    "gift_gallery_id": "737",
+                    "influencer_type": "Contractor",
+                    "user_type": "influencer",
+                    "del": "0"
+                },
+                {
+                    "id": "866",
+                    "org_id": "9",
+                    "gift_gallery_id": "737",
+                    "influencer_type": "Carpenter",
+                    "user_type": "influencer",
+                    "del": "0"
+                }
+            ]
+        },
+        {
+            "id": "736",
+            "org_id": "9",
+            "date_created": "2025-02-19 15:38:22",
+            "created_by": "9",
+            "created_by_name": "Advance Ply",
+            "gift_type": "Gift",
+            "title": "High-End Mattress",
+            "gift_point": "32000",
+            "gift_img": "",
+            "termsNcondition": "",
+            "range_start": "0",
+            "range_end": "0",
+            "point_range_value": "0",
+            "status": "1",
+            "last_status_changed_on": "2025-02-19 15:38:22",
+            "status_changed_by": "9",
+            "status_changed_by_name": "Advance Ply",
+            "date_from": "0000-00-00",
+            "date_to": "0000-00-00",
+            "gift_reward": "",
+            "del": "0",
+            "item": [
+                {
+                    "id": "863",
+                    "org_id": "9",
+                    "gift_gallery_id": "736",
+                    "influencer_type": "Contractor",
+                    "user_type": "influencer",
+                    "del": "0"
+                },
+                {
+                    "id": "864",
+                    "org_id": "9",
+                    "gift_gallery_id": "736",
+                    "influencer_type": "Carpenter",
+                    "user_type": "influencer",
+                    "del": "0"
+                }
+            ]
+        },
+        {
+            "id": "735",
+            "org_id": "9",
+            "date_created": "2025-02-19 15:38:22",
+            "created_by": "9",
+            "created_by_name": "Advance Ply",
+            "gift_type": "Gift",
+            "title": "Branded Microwave Oven",
+            "gift_point": "30000",
+            "gift_img": "",
+            "termsNcondition": "",
+            "range_start": "0",
+            "range_end": "0",
+            "point_range_value": "0",
+            "status": "1",
+            "last_status_changed_on": "2025-02-19 15:38:22",
+            "status_changed_by": "9",
+            "status_changed_by_name": "Advance Ply",
+            "date_from": "0000-00-00",
+            "date_to": "0000-00-00",
+            "gift_reward": "",
+            "del": "0",
+            "item": [
+                {
+                    "id": "861",
+                    "org_id": "9",
+                    "gift_gallery_id": "735",
+                    "influencer_type": "Contractor",
+                    "user_type": "influencer",
+                    "del": "0"
+                },
+                {
+                    "id": "862",
+                    "org_id": "9",
+                    "gift_gallery_id": "735",
+                    "influencer_type": "Carpenter",
+                    "user_type": "influencer",
+                    "del": "0"
+                }
+            ]
+        }       
+    ],
+    "count": 102,
+    "tabCount": {
+        "giftCount": 102,
+        "cashCount": 53
+    }
+}

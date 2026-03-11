@@ -1,0 +1,84 @@
+default_platform(:android)
+
+platform :android do
+  # -------------------
+  # TESTS
+  # -------------------
+  desc "Run unit tests"
+  lane :test do
+    # Run with: fastlane test
+    gradle(task: "test")
+  end
+
+  # -------------------
+  # DEV FLAVOR BUILDS
+  # -------------------
+  desc "Build Dev Debug APK"
+  lane :build_dev_debug do
+    # Run with: fastlane build_dev_debug
+    # Generates: android/app/build/outputs/apk/dev/debug/app-dev-debug.apk
+    gradle(task: "assembleDevDebug")
+  end
+
+  desc "Build Dev Release APK"
+  lane :build_dev_release do
+    # Run with: fastlane build_dev_release
+    # Generates: android/app/build/outputs/apk/dev/release/app-dev-release.apk
+    gradle(task: "assembleDevRelease")
+  end
+
+  # -------------------
+  # PROD FLAVOR BUILDS
+  # -------------------
+  desc "Build Prod Debug APK"
+  lane :build_prod_debug do
+    # Run with: fastlane build_prod_debug
+    # Generates: android/app/build/outputs/apk/prod/debug/app-prod-debug.apk
+    gradle(task: "assembleProdDebug")
+  end
+
+  desc "Build Prod Release APK"
+  lane :build_prod_release do
+    # Run with: fastlane build_prod_release
+    # Generates: android/app/build/outputs/apk/prod/release/app-prod-release.apk
+    gradle(task: "assembleProdRelease")
+  end
+
+  # -------------------
+  # BUNDLES (AAB)
+  # -------------------
+  desc "Build Prod Release AAB (Google Play)"
+  lane :bundle_prod_release do
+    # Run with: fastlane bundle_prod_release
+    # Generates: android/app/build/outputs/bundle/prod/release/app-prod-release.aab
+    gradle(task: "bundleProdRelease")
+  end
+
+  desc "Build Prod Debug AAB"
+  lane :bundle_prod_debug do
+    # Run with: fastlane bundle_prod_debug
+    # Generates: android/app/build/outputs/bundle/prod/debug/app-prod-debug.aab
+    gradle(task: "bundleProdDebug")
+  end
+
+  # -------------------
+  # DEPLOY TO PLAY STORE
+  # -------------------
+  desc "Deploy Prod Release AAB to Google Play Production"
+  lane :deploy_prod do
+    # Run with: fastlane deploy_prod
+    # Builds the Prod Release AAB and uploads it directly to Production track
+
+    # Step 1: Build the Prod Release AAB
+    gradle(task: "bundleProdRelease")
+
+    # Step 2: Upload to Google Play Production track
+    upload_to_play_store(
+      track: "production",        # Deploy to production
+      skip_upload_apk: true,      # Only upload AAB
+      skip_upload_metadata: false,# Upload metadata if present
+      skip_upload_images: true,   # Skip images/screenshots
+      skip_upload_screenshots: true
+    )
+  end
+end

@@ -1,0 +1,137 @@
+import express from 'express';
+import cors from 'cors';
+import path from 'path';
+import fs from 'fs';
+import { fileURLToPath } from 'url';
+
+import logger from '@shared/utilities/logger.js';
+import loyaltyRoutes from './routes/index.js';
+import errorHandler from '@shared/helpers/errorHandler.js';
+import { config } from '@shared/config/env.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const uploadFolder = path.join(__dirname, '../../', 'uploads');
+
+const app = express();
+
+// Logging
+app.use((req, res, next) => {
+  req.log = logger;
+  next();
+});
+
+
+// CORS & Parsers
+const allowedOrigins = config.app.CORS_ORIGINS || ['http://localhost:5173', 'https://starkpaints.basiq360.com', 'https://starkpaints-web-api.basiq360.com'];
+
+app.use(cors({
+    origin: (origin, callback) => {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            console.warn(`Blocked by CORS: ${origin}`);
+            callback(null, false);
+        }
+    },
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+}));
+app.use(cors({
+    origin: (origin, callback) => {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            console.warn(`Blocked by CORS: ${origin}`);
+            callback(null, false);
+        }
+    },
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+}));
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Catch JSON parsing errors
+app.use((err, req, res, next) => {
+    if (err instanceof SyntaxError && err.status === 400 && "body" in err) {
+        return res.status(400).json({ error: "Invalid JSON format in request body" });
+    }
+    next();
+});
+// MP4 Streaming Route for Chrome + Opera
+app.get('/uploads/:filename', (req, res, next) => {
+    const filePath = path.join(uploadFolder, req.params.filename);
+
+    if (path.extname(filePath).toLowerCase() !== '.mp4') {
+
+        return next();
+    }
+
+    fs.stat(filePath, (err, stats) => {
+        if (err || !stats.isFile()) {
+            return res.status(404).send('File not found');
+        }
+
+        const range = req.headers.range;
+        if (!range) {
+            res.writeHead(200, {
+                'Content-Type': 'video/mp4',
+                'Content-Length': stats.size,
+                'Accept-Ranges': 'bytes',
+                'Content-Disposition': 'inline'
+            });
+            fs.createReadStream(filePath).pipe(res);
+            return;
+        }
+
+        const [startStr, endStr] = range.replace(/bytes=/, "").split("-");
+        const start = parseInt(startStr, 10);
+        const end = endStr ? parseInt(endStr, 10) : stats.size - 1;
+
+        if (start >= stats.size || end >= stats.size) {
+            res.writeHead(416, { 'Content-Range': `bytes */${stats.size}` });
+            return res.end();
+        }
+
+        const chunkSize = (end - start) + 1;
+        const file = fs.createReadStream(filePath, { start, end });
+
+        res.writeHead(206, {
+            'Content-Range': `bytes ${start}-${end}/${stats.size}`,
+            'Accept-Ranges': 'bytes',
+            'Content-Length': chunkSize,
+            'Content-Type': 'video/mp4',
+            'Content-Disposition': 'inline'
+        });
+
+        file.pipe(res);
+    });
+});
+
+// Static handler for everything else
+app.use('/uploads', express.static(uploadFolder));
+
+// Health check
+app.get('/health', (req, res) => {
+    req.log.info('Loyalty module healthy');
+    return res.status(200).json({ status: 'ok', module: 'loyalty' });
+});
+
+// Routes
+app.use('/', loyaltyRoutes);
+
+// Errors
+app.use((err, req, res, next) => {
+    req.log.error({ err }, 'Loyalty module error');
+    return errorHandler(err, req, res, next);
+});
+
+
+// console.log("Running in:", config.app.nodeEnv);
+// console.log("DB URL:", config.db.url);
+// console.log("Redis URL:", config.redis.url);
+
+
+export default app;

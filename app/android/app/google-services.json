@@ -1,0 +1,371 @@
+{
+  "project_info": {
+    "project_number": "142932121281",
+    "project_id": "basiq360-product-6",
+    "storage_bucket": "basiq360-product-6.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:142932121281:android:d529f0dbcb75c67122a640",
+        "android_client_info": {
+          "package_name": "com.AsiaticElectricalsbasiq360.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByq0_JkWU8ECrVOgPVlptDJ5ulLUCYqYs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:142932121281:android:7541bf2926a3ae3122a640",
+        "android_client_info": {
+          "package_name": "com.CaptainPurebasiq360.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByq0_JkWU8ECrVOgPVlptDJ5ulLUCYqYs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:142932121281:android:826c15de3781e87922a640",
+        "android_client_info": {
+          "package_name": "com.Goldlaminatebasiq360.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByq0_JkWU8ECrVOgPVlptDJ5ulLUCYqYs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:142932121281:android:cae3c32631ffd30122a640",
+        "android_client_info": {
+          "package_name": "com.KaushalTestBasiq360.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByq0_JkWU8ECrVOgPVlptDJ5ulLUCYqYs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:142932121281:android:3ac296c8fb899b9222a640",
+        "android_client_info": {
+          "package_name": "com.OPGMOBILITYDMSbasiq360.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByq0_JkWU8ECrVOgPVlptDJ5ulLUCYqYs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:142932121281:android:c01beb69d6157ade22a640",
+        "android_client_info": {
+          "package_name": "com.ProcuralBasiq360.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByq0_JkWU8ECrVOgPVlptDJ5ulLUCYqYs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:142932121281:android:3321b8be04fd0db822a640",
+        "android_client_info": {
+          "package_name": "com.ShreejiAutomotivesbasiq360.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByq0_JkWU8ECrVOgPVlptDJ5ulLUCYqYs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:142932121281:android:e13d97b40fbbaf8022a640",
+        "android_client_info": {
+          "package_name": "com.TrenzliteArchitectbasiq360.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByq0_JkWU8ECrVOgPVlptDJ5ulLUCYqYs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:142932121281:android:1f14146d6ce83e2f22a640",
+        "android_client_info": {
+          "package_name": "com.WudsignSangambasiq360.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByq0_JkWU8ECrVOgPVlptDJ5ulLUCYqYs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:142932121281:android:c1e42377f83ff5b822a640",
+        "android_client_info": {
+          "package_name": "com.basiq360.MangalamGroup"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByq0_JkWU8ECrVOgPVlptDJ5ulLUCYqYs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:142932121281:android:319cc75039264d7722a640",
+        "android_client_info": {
+          "package_name": "com.basiq360.MurgaPillars"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByq0_JkWU8ECrVOgPVlptDJ5ulLUCYqYs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:142932121281:android:8eae390317465a7f22a640",
+        "android_client_info": {
+          "package_name": "com.basiq360.SlimlineHardware"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByq0_JkWU8ECrVOgPVlptDJ5ulLUCYqYs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:142932121281:android:2ed277759530141f22a640",
+        "android_client_info": {
+          "package_name": "com.basiq360.VenusValves"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByq0_JkWU8ECrVOgPVlptDJ5ulLUCYqYs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:142932121281:android:abf44ccf6b57584622a640",
+        "android_client_info": {
+          "package_name": "com.basiq360.asiaticelectricals"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByq0_JkWU8ECrVOgPVlptDJ5ulLUCYqYs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:142932121281:android:7a2cbde26277e36322a640",
+        "android_client_info": {
+          "package_name": "com.basiq360.julietgroup"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByq0_JkWU8ECrVOgPVlptDJ5ulLUCYqYs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:142932121281:android:2677285be5fbbf7722a640",
+        "android_client_info": {
+          "package_name": "com.basiq360.sleepsmile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByq0_JkWU8ECrVOgPVlptDJ5ulLUCYqYs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:142932121281:android:296b44a2a229834b22a640",
+        "android_client_info": {
+          "package_name": "com.basiq360.starkpaints"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByq0_JkWU8ECrVOgPVlptDJ5ulLUCYqYs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:142932121281:android:8c0a7a7084a6d8cb22a640",
+        "android_client_info": {
+          "package_name": "com.basiq360.starkpaints.dev"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByq0_JkWU8ECrVOgPVlptDJ5ulLUCYqYs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:142932121281:android:3b64cfdc9337657a22a640",
+        "android_client_info": {
+          "package_name": "com.joxim.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByq0_JkWU8ECrVOgPVlptDJ5ulLUCYqYs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

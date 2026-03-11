@@ -15,13 +15,13 @@ export const getColumns = ({handleStatusChange = () => {}, handleViewInfluencer 
     cell: ({ row }) =>
       row.original.image ? (
         <img
-          src={row.original.image || `https://media.istockphoto.com/id/2173059563/vector/coming-soon-image-on-white-background-no-photo-available.jpg?s=612x612&w=0&k=20&c=v0a_B58wPFNDPULSiw_BmPyhSNCyrP_d17i2BPPyDTk=`}
-          // src={`https://your-image-base-url.com/${row.original.image}`}
+          src={row.original.image}
           alt="Badge"
           className="w-10 h-10 rounded"
+          onError={(e) => { e.target.src = "/placeholder.svg"; }}
         />
       ) : (
-        "---"
+        <img src="/placeholder.svg" alt="No Image" className="w-10 h-10 rounded" />
       ),
   },
   {

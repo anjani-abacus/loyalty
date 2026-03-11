@@ -32,10 +32,10 @@ export const getTicketColumns = ({page, limit, handleTypeChange = () => { }, }) 
       row.original.image ? (
         <PhotoProvider>
       <PhotoView src={row.original.image}>
-        <img src={row.original.image} alt="ticket image" className="h-10 w-10 object-cover" />
+        <img src={row.original.image} alt="ticket image" className="h-10 w-10 object-cover" onError={(e) => { e.target.src = "/placeholder.svg"; }} />
       </PhotoView>
       </PhotoProvider>
-      ) : "N/A"
+      ) : <img src="/placeholder.svg" alt="No Image" className="h-10 w-10 object-cover" />
   },
   { accessorKey: "remark", header: "Remark", cell: ({ row }) =>  row.original.remark || '--'},
   { accessorKey: "ticket_status", header: "Status"

@@ -10,12 +10,13 @@ export const getColumns = ({page, limit, setSelectedImage = () => {}}) => [
         return img ? (
           <img
             src={img}
-            alt="Gift"
+            alt="Post"
             className="w-12 h-12 object-cover rounded cursor-pointer hover:scale-105 transition-transform"
             onClick={() => setSelectedImage(img)}
+            onError={(e) => { e.target.src = "/placeholder.svg"; }}
           />
         ) : (
-          "No Image"
+          <img src="/placeholder.svg" alt="No Image" className="w-12 h-12 object-cover rounded" />
         );
       },
     },

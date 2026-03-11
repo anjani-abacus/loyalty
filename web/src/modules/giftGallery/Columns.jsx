@@ -35,10 +35,10 @@ export const getColumns = ({
         return row.original.gift_img ? (
           <PhotoProvider>
             <PhotoView src={row.original.gift_img}>
-              <img src={row.original.gift_img} alt="ticket image" className="h-10 w-10 object-cover" />
+              <img src={row.original.gift_img} alt="gift image" className="h-10 w-10 object-cover" onError={(e) => { e.target.src = "/placeholder.svg"; }} />
             </PhotoView>
           </PhotoProvider>
-        ) : "N/A"
+        ) : <img src="/placeholder.svg" alt="No Image" className="h-10 w-10 object-cover" />
       },
     },
 

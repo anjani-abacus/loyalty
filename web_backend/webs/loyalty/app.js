@@ -26,7 +26,7 @@ app.use(compression({
 }));
 
 // CORS & Parsers
-const allowedOrigins = config.app.CORS_ORIGINS || ['http://localhost:5173', 'https://starkpaints.basiq360.com'];
+const allowedOrigins = config.app.CORS_ORIGINS || ['http://localhost:5173', 'http://localhost:3000'];
 
 app.use(cors({
     origin: (origin, callback) => {

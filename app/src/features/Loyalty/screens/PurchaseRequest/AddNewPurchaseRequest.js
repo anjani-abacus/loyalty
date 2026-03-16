@@ -31,7 +31,7 @@ import { PurchaseRequestAddValidation } from '../../../../core/components/Valida
 import moment from 'moment';
 import AttachImages, { AttachImages2 } from '../../../../core/components/AttachImages/AttachImages';
 import { useIsFocused } from '@react-navigation/native';
-import AppLoader from '../../../../core/components/Loader/AppLoader';
+import AppLoader, { AppLoader2 } from '../../../../core/components/Loader/AppLoader';
 
 const AddNewPurchaseRequest = ({ navigation }) => {
   const GlobelStyle = useGlobelStyle();
@@ -135,7 +135,7 @@ const AddNewPurchaseRequest = ({ navigation }) => {
     <BottomSheetModalProvider>
       <SafeAreaView style={[GlobelStyle.container]}>
         {
-          buttonLoading ? <AppLoader isLoading={buttonLoading} /> : (
+          buttonLoading ? <AppLoader2 isLoading={buttonLoading} /> : (
             <ScrollView
               style={{ margin: 16 }}
               showsVerticalScrollIndicator={false}

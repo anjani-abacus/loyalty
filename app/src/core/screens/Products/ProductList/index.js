@@ -34,35 +34,35 @@ import { PointBalance } from '../../../../features/Loyalty/screens/SpinAndWheel'
 import { useTranslation } from 'react-i18next';
 import moment from 'moment';
 
-  const shareProductImage = async (data, path) => {
-    const imageUrl = path;
-    try {
-      const fileName = 'product.jpg';
-      const localFilePath = `${RNFS.CachesDirectoryPath}/${fileName}`;
+const shareProductImage = async (data, path) => {
+  const imageUrl = path;
+  try {
+    const fileName = 'product.jpg';
+    const localFilePath = `${RNFS.CachesDirectoryPath}/${fileName}`;
 
-      // 1. Download the remote image to a local path
-      const downloadResult = await RNFS.downloadFile({
-        fromUrl: imageUrl || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3dSEtDvpd9KAn4SdFJVoL0K1lj4Xfc-wVWQ&s',
-        toFile: localFilePath,
-      }).promise;
+    // 1. Download the remote image to a local path
+    const downloadResult = await RNFS.downloadFile({
+      fromUrl: imageUrl || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3dSEtDvpd9KAn4SdFJVoL0K1lj4Xfc-wVWQ&s',
+      toFile: localFilePath,
+    }).promise;
 
-      if (downloadResult.statusCode === 200) {
-        // 2. Share the downloaded image
-        await Share.open({
-          url: `file://${localFilePath}`,
-          type: 'image/jpeg',
-          message:`Product Name: ${data?.product_name} \nProduct Code: ${data?.product_code} \n\n`,
-          title: 'Share product with:',
-          failOnCancel: false,
-        });
-      } else {
-        Alert.alert('Download failed', `Status code: ${downloadResult.statusCode}`);
-      }
-    } catch (error) {
-      console.error('Error while sharing Product:', error);
-      Alert.alert('Error', error.message || 'Something went wrong');
+    if (downloadResult.statusCode === 200) {
+      // 2. Share the downloaded image
+      await Share.open({
+        url: `file://${localFilePath}`,
+        type: 'image/jpeg',
+        message: `Product Name: ${data?.product_name} \nProduct Code: ${data?.product_code} \n\n`,
+        title: 'Share product with:',
+        failOnCancel: false,
+      });
+    } else {
+      Alert.alert('Download failed', `Status code: ${downloadResult.statusCode}`);
     }
-  };
+  } catch (error) {
+    console.error('Error while sharing Product:', error);
+    Alert.alert('Error', error.message || 'Something went wrong');
+  }
+};
 
 const AccordionItem = ({ styles, item, isActive, onToggle }) => {
   const activeTheme = useTheme();
@@ -76,8 +76,8 @@ const AccordionItem = ({ styles, item, isActive, onToggle }) => {
       </TouchableOpacity>
       <Collapsible collapsed={!isActive}>
         {item?.content?.map((elem) => <View style={styles.content}>
-          <Text style={{color:activeTheme.text}}>{elem.title}</Text>
-          <Text style={{color:activeTheme.text, fontWeight: 'bold' }}>{elem.value}</Text>
+          <Text style={{ color: activeTheme.text }}>{elem.title}</Text>
+          <Text style={{ color: activeTheme.text, fontWeight: 'bold' }}>{elem.value}</Text>
         </View>)}
       </Collapsible>
     </View>
@@ -168,10 +168,10 @@ const ProductDetail = ({ data }) => {
       borderRadius: 5,
     },
   });
-  return <View style={{paddingBottom:insets.bottom, flex: 1, justifyContent: 'space-between' }}>
+  return <View style={{ paddingBottom: insets.bottom, flex: 1, justifyContent: 'space-between' }}>
     {data?.images[0]?.image ? <FastImage
       style={{ height: 300 }}
-      source={{uri:data?.images[0]?.image}}
+      source={{ uri: data?.images[0]?.image }}
       priority={FastImage.priority.high}
       resizeMode={FastImage.resizeMode.contain}
     /> : <FastImage
@@ -181,14 +181,14 @@ const ProductDetail = ({ data }) => {
       resizeMode={FastImage.resizeMode.contain}
     />}
 
-      <ScrollView>
+    <ScrollView>
       <View style={{
         backgroundColor: 'rgba(239, 246, 255, 0.5)',
         flex: 1,
         // borderTopWidth:1,
-        borderLeftWidth:1,
-        borderRightWidth:1,
-        borderColor:'#ccc',
+        borderLeftWidth: 1,
+        borderRightWidth: 1,
+        borderColor: '#ccc',
         justifyContent: 'space-between',
         borderTopRightRadius: 30,
         borderTopLeftRadius: 30,
@@ -253,14 +253,14 @@ const ProductDetail = ({ data }) => {
         </View>
       </View>
     </ScrollView>
-      <TouchableOpacity
+    <TouchableOpacity
       onPress={() => shareProductImage(data, data?.images[0]?.image)}
       activeOpacity={0.8}
       style={{
         borderRadius: 12,
         overflow: 'hidden', // required for ripple on Android
         marginVertical: 12,
-        paddingHorizontal:10,
+        paddingHorizontal: 10,
       }}
     >
       <LinearGradient
@@ -273,7 +273,7 @@ const ProductDetail = ({ data }) => {
           alignItems: 'center',
           justifyContent: 'center',
           borderRadius: 12,
-          gap:5,
+          gap: 5,
           flexDirection: 'row',
         }}
       >
@@ -322,7 +322,7 @@ const Card = ({ openBottomSheet, item, navigation }) => {
                 />
               ) : (
                 <ImageBackground
-                  source={{uri:(item?.images[0]?.image)}}
+                  source={{ uri: (item?.images[0]?.image) }}
                   style={{ height: 80, width: 80 }}
                   resizeMode="cover" // or "contain", "stretch", "repeat", "center"
                 />
@@ -366,7 +366,7 @@ const Card = ({ openBottomSheet, item, navigation }) => {
                   borderWidth: 1,
                   borderColor: '#53AB58',
                   color: '#fff',
-                  fontSize:12,
+                  fontSize: 12,
                   paddingHorizontal: 10,
                   borderRadius: 10,
                 }}>{item?.category_name || 'Category'}</Text>
@@ -377,7 +377,7 @@ const Card = ({ openBottomSheet, item, navigation }) => {
                   borderWidth: 1,
                   borderColor: '#FFA000',
                   color: '#000',
-                  fontSize:12,
+                  fontSize: 12,
                   paddingHorizontal: 10,
                   borderRadius: 10,
                 }}>{item?.sub_category_name || 'Sub Category'}</Text>
@@ -398,9 +398,16 @@ const Card = ({ openBottomSheet, item, navigation }) => {
 };
 
 const ProductsList = ({ navigation, route }) => {
-  const { isLoading, refetch, data: productList, isFetching } = useProductList({ filter: { } });
+  const category_id = route.params?.category_id;
+  const sub_category_id = route.params?.sub_category_id;
+
+  const { isLoading, refetch, data: productList, isFetching } = useProductList({
+    filter: {},
+    category_id: category_id,
+    sub_category_id: sub_category_id
+  });
   const insets = useSafeAreaInsets();
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const GlobelStyle = useGlobelStyle();
   const [isRefreshing, setIsRefreshing] = useState(false);
 
@@ -411,17 +418,17 @@ const ProductsList = ({ navigation, route }) => {
 
 
   const handleSearch = (newValue) => {
-    refetch({ filter: newValue });
+    refetch({ filter: newValue, category_id, sub_category_id });
     setSearchValue(newValue);
   };
 
   const bottomSheetRef = useRef(null);
-  const openBottomSheet = (item) => {setActiveData(item); bottomSheetRef.current?.present();};
+  const openBottomSheet = (item) => { setActiveData(item); bottomSheetRef.current?.present(); };
   const closeBottomSheet = () => bottomSheetRef.current.dismiss();
 
   const onRefresh = () => {
-      setSearchValue('');
-      refetch({filter:{}});
+    setSearchValue('');
+    refetch({ filter: {}, category_id, sub_category_id });
   };
 
   // if (isLoading) {
@@ -430,82 +437,82 @@ const ProductsList = ({ navigation, route }) => {
 
   return (
     <>
-    {/* , {paddingBottom:insets.bottom} */}
+      {/* , {paddingBottom:insets.bottom} */}
       <SafeAreaView style={[GlobelStyle.container]}>
         <>
           <LinearGradient
-                    start={{ x: 0, y: 0 }}
-                    end={{ x: 1, y: 1 }}
-                    colors={['#CE90FF', '#3600C0']}
-                    style={{
-                      backgroundColor:'#3a459c',
-                      paddingHorizontal:10,
-                      paddingBottom:10,
-                      height:100,
-                    }}
-                    >
-                    <StatusBarHeader height={StatusBar.currentHeight} />
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <TouchableOpacity onPress={() => navigation.goBack()}>
-                        <LeftArrowIcon />
-                      </TouchableOpacity>
-                      <Text style={{
-                        flex: 0.8,
-                        textAlign: 'right',
-                        paddingRight:30,
-                        color: '#fff',
-                        fontSize: 18,
-                        fontWeight: 'bold',
-                      }}>{t('Products')}</Text>
-                      <PointBalance navigation={navigation} />
-                      <TouchableOpacity onPress={() => navigation.navigate('FAQ')}>
-                        <HelpIcon
-                          icon={'arrow-left'}
-                          style={{ marginRight: 10 }}
-                          width={30}
-                          height={30}
-                          fill="#fff"
-                          stroke="#fff"
-                          strokeWidth={0.1}
-                        />
-                      </TouchableOpacity>
-                    </View>
-                  </LinearGradient>
-          <View style={[Style.CategoryCard]}>
-              <>
-                <FlatList
-                  data={productList?.data?.result}
-                  onMomentumScrollBegin={() => {
-                    onEndReachedCalledDuringMomentum = false;
-                  }}
-                  keyExtractor={(item) => item.id.toString()}
-                  // ListHeaderComponent={
-                  //   <AppSearchBar
-                  //     term={searchValue}
-                  //     onChangeTerm={handleSearch}
-                  //     placeHolder="Search here..."
-                  //   />}
-                  ListEmptyComponent={
-                    <View style={{ marginTop: 200 }}>
-                      <AppNoDataFound />
-                    </View>
-                  }
-                  refreshControl={
-                    <RefreshControl
-                      refreshing={isFetching && !isLoading}
-                      onRefresh={onRefresh}
-                    />
-                  }
-                  renderItem={({ item, index }) => {
-                    return <>
-                      <View>
-                        <Card openBottomSheet={openBottomSheet}
-                          navigation={navigation} item={item} index={index} />
-                      </View>
-                    </>;
-                  }}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            colors={['#CE90FF', '#3600C0']}
+            style={{
+              backgroundColor: '#3a459c',
+              paddingHorizontal: 10,
+              paddingBottom: 10,
+              height: 100,
+            }}
+          >
+            <StatusBarHeader height={StatusBar.currentHeight} />
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+              <TouchableOpacity onPress={() => navigation.goBack()}>
+                <LeftArrowIcon />
+              </TouchableOpacity>
+              <Text style={{
+                flex: 0.8,
+                textAlign: 'right',
+                paddingRight: 30,
+                color: '#fff',
+                fontSize: 18,
+                fontWeight: 'bold',
+              }}>{t('Products')}</Text>
+              <PointBalance navigation={navigation} />
+              <TouchableOpacity onPress={() => navigation.navigate('FAQ')}>
+                <HelpIcon
+                  icon={'arrow-left'}
+                  style={{ marginRight: 10 }}
+                  width={30}
+                  height={30}
+                  fill="#fff"
+                  stroke="#fff"
+                  strokeWidth={0.1}
                 />
-              </>
+              </TouchableOpacity>
+            </View>
+          </LinearGradient>
+          <View style={[Style.CategoryCard]}>
+            <>
+              <FlatList
+                data={productList?.data?.result}
+                onMomentumScrollBegin={() => {
+                  onEndReachedCalledDuringMomentum = false;
+                }}
+                keyExtractor={(item) => item.id.toString()}
+                // ListHeaderComponent={
+                //   <AppSearchBar
+                //     term={searchValue}
+                //     onChangeTerm={handleSearch}
+                //     placeHolder="Search here..."
+                //   />}
+                ListEmptyComponent={
+                  <View style={{ marginTop: 200 }}>
+                    <AppNoDataFound />
+                  </View>
+                }
+                refreshControl={
+                  <RefreshControl
+                    refreshing={isFetching && !isLoading}
+                    onRefresh={onRefresh}
+                  />
+                }
+                renderItem={({ item, index }) => {
+                  return <>
+                    <View>
+                      <Card openBottomSheet={openBottomSheet}
+                        navigation={navigation} item={item} index={index} />
+                    </View>
+                  </>;
+                }}
+              />
+            </>
 
           </View>
         </>

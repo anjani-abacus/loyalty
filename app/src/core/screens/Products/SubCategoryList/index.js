@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -7,19 +7,19 @@ import {
   SafeAreaView,
   RefreshControl,
 } from 'react-native';
-import {Avatar} from 'react-native-paper';
-import AppLoader from '../../../../core/components/Loader/AppLoader';
+import { Avatar } from 'react-native-paper';
+import AppLoader, { AppLoader2 } from '../../../../core/components/Loader/AppLoader';
 import useActiveTheme from '../../../../core/components/Theme/useActiveTheme';
 import AppNoDataFound from '../../../../core/components/No_Data_Found/AppNoDataFound';
 import Style from '../../../assets/Style/styles';
 import useGlobelStyle from '../../../assets/Style/GlobelStyle';
-import {useTranslation} from 'react-i18next';
-import {ApiCall} from '../../../../services/ServiceProvider';
+import { useTranslation } from 'react-i18next';
+import { useSubCategoryList } from '../../../../api/hooks/useMasters';
 import AppSearchBar from '../../../../core/components/Searchbar/AppSearchBar';
 import Toast from 'react-native-toast-message';
 
-const SubCategoryList = ({navigation, route}) => {
-  const {t} = useTranslation();
+const SubCategoryList = ({ navigation, route }) => {
+  const { t } = useTranslation();
   const activeTheme = useActiveTheme();
   const GlobelStyle = useGlobelStyle();
   const [isRefreshing, setIsRefreshing] = useState(true);
@@ -27,8 +27,10 @@ const SubCategoryList = ({navigation, route}) => {
   const [searchValue, setSearchValue] = useState('');
   const [start, setStart] = useState(0);
   const [endReached, setEndReached] = useState(false);
-  const id = route.params?.id;
+  const category_id = route.params?.id;
   let onEndReachedCalledDuringMomentum = true;
+
+  const { mutate: fetchSubCategory } = useSubCategoryList();
 
   useEffect(() => {
     getCategoryList();
@@ -58,25 +60,22 @@ const SubCategoryList = ({navigation, route}) => {
   };
 
   const getCategoryList = async () => {
-    try {
-      const result = await ApiCall(
-        {
-          filter: {limit: 0, start: start, search_key: searchValue},
-          cat_id: id,
-        },
-        'AppCustomerNetwork/subSegmentList',
-      );
-
-      if (result.statusCode === 200) {
-        setCategoryList(result.data);
-      } else {
-        Toast.show({ type: 'error', text1: result.statusMsg, visibilityTime: 6000 });
+    fetchSubCategory({
+      filter: { limit: 20, start: start, search_key: searchValue },
+      category_id: category_id,
+    }, {
+      onSuccess: (result) => {
+        if (result.status === 200 && result.data.success) {
+          setCategoryList(result.data.result);
+        } else {
+          Toast.show({ type: 'error', text1: result?.data?.statusMsg || 'Error fetching subcategories', visibilityTime: 6000 });
+        }
+        setIsRefreshing(false);
+      },
+      onError: () => {
+        setIsRefreshing(false);
       }
-      setIsRefreshing(false);
-    } catch (error) {
-      console.error('Error occurred while fetching category data:', error);
-      setIsRefreshing(false);
-    }
+    });
   };
 
   return (
@@ -106,7 +105,7 @@ const SubCategoryList = ({navigation, route}) => {
         </View>
         <View style={[Style.CategoryCard]}>
           {isRefreshing ? (
-            <AppLoader
+            <AppLoader2
               loading={isRefreshing}
               color={activeTheme.Secondary}
               size={40}
@@ -119,7 +118,7 @@ const SubCategoryList = ({navigation, route}) => {
                   onEndReachedCalledDuringMomentum = false;
                 }}
                 ListEmptyComponent={
-                  <View style={{marginTop: 200}}>
+                  <View style={{ marginTop: 200 }}>
                     <RefreshControl
                       refreshing={isRefreshing}
                       onRefresh={onRefresh}
@@ -134,12 +133,12 @@ const SubCategoryList = ({navigation, route}) => {
                   />
                 }
                 // ListHeaderComponent={ListHeader}
-                renderItem={({item, index}) => (
+                renderItem={({ item, index }) => (
                   <View
                     key={`${item.id}-${index}`}
-                    style={[Style.dealerCard, {marginTop: 14}]}>
+                    style={[Style.dealerCard, { marginTop: 14 }]}>
                     <TouchableOpacity
-                      onPress={() => navigation.navigate('ProductList', item)}>
+                      onPress={() => navigation.navigate('ProductList', { category_id: category_id, sub_category_id: item.id })}>
                       <View
                         style={{
                           flexDirection: 'row',
@@ -159,7 +158,7 @@ const SubCategoryList = ({navigation, route}) => {
                           rounded={false}
                           style={[
                             GlobelStyle.avatarContainer,
-                            {height: 25, width: 25, borderRadius: 12},
+                            { height: 25, width: 25, borderRadius: 12 },
                           ]}
                           labelStyle={GlobelStyle.avatarLabelStyle}
                           icon="chevron-right"

@@ -378,7 +378,7 @@ const UpdateRegistration = () => {
                                         )}
                                     </View>
 
-                                    <View style={[GlobelStyle.mt8]}>
+                                    {/*<View style={[GlobelStyle.mt8]}>
                                         <TouchableOpacity onPress={() => setOpen(!open)}>
 
                                             <TextInput
@@ -412,7 +412,7 @@ const UpdateRegistration = () => {
                                                 </Animatable.Text>
                                             )}
                                         </TouchableOpacity>
-                                    </View>
+                                    </View> */}
                                     <View style={[GlobelStyle.mt8]}>
                                         <TouchableOpacity onPress={() => setOpenDoa(!openDoa)}>
 
@@ -452,7 +452,7 @@ const UpdateRegistration = () => {
 
                                     <View style={[GlobelStyle.mt8]}>
 
-                                        <TextInput style={styles.input} name={'pincode'} placeholder={'Pincode'} value={values.pincode} onChangeText={(value) => { handleChange('pincode')(value); getAddress(value, setFieldValue, setDistrictData); loader(value); }} label={t('Pincode') + '*'} onBlur={handleBlur('pincode')} mode="outlined"
+                                        <TextInput style={styles.input} name={'pincode'} placeholder={'Pincode'} value={values.pincode} onChangeText={(value) => { handleChange('pincode')(value); /* getAddress(value, setFieldValue, setDistrictData); */ loader(value); }} label={t('Pincode') + '*'} onBlur={handleBlur('pincode')} mode="outlined"
                                             maxLength={6} keyboardType={'numeric'} />
                                         {(errors.pincode || touched.pincode) && (
                                             <Animatable.Text

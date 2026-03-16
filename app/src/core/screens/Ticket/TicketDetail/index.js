@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import ImageView from 'react-native-image-viewing';
 import { Avatar } from 'react-native-paper';
-import AppLoader from '../../../../core/components/Loader/AppLoader';
+import AppLoader, { AppLoader2 } from '../../../../core/components/Loader/AppLoader';
 import moment from 'moment';
 import useActiveTheme from '../../../../core/components/Theme/useActiveTheme';
 import Style from '../../../assets/Style/styles';
@@ -83,7 +83,7 @@ const TicketDetail = ({ route }) => {
           {isRefreshing ? (
             <View
               style={{ flex: 1, height: screenHeight }}>
-              <AppLoader
+              <AppLoader2
                 loading={isRefreshing}
 
               />

@@ -56,6 +56,7 @@ import RedeemGifts from '../HighlightRedeemGifts';
 import ThemedText from '../../../../core/components/ThemedText';
 import { ImageModal } from '../../../../core/components/ConfirmationModal/ConfirmationModal';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { AppLoader2 } from '../../../../core/components/Loader/AppLoader';
 
 
 
@@ -259,7 +260,7 @@ export const Features = ({ navigation }) => {
     {
       'icon': 'product',
       'title': t('Products'),
-      'navigateTo': 'ProductList',
+      'navigateTo': 'Category',
       'options': { 'id': 1 },
     },
     {
@@ -402,13 +403,23 @@ const HighlightBanner = ({ navigation, styles }) => {
 };
 
 const BannerSection = ({ navigation, styles }) => {
-  return <BannerCarousel autoPlay={true} showIndicator={false} >
-    <ImageBackground
-      source={Images.videoBg}
-      style={{ height: 200, width: '100%', backgroundColor: '#fff' }}
-      resizeMode="cover" // or "contain", "stretch", "repeat", "center"
-    />
-  </BannerCarousel>;
+  const { data: bannerData, isLoading, isError } = useBannerList();
+
+  if (isLoading) {
+    return <View style={{ height: 180, justifyContent: 'center' }}><AppLoader2 loading={true} /></View>;
+  }
+
+  if (isError || !bannerData?.data?.result) {
+    return null;
+  }
+
+  const activeBanners = bannerData.data.result.filter(banner => banner.del === false);
+
+  if (activeBanners.length === 0) {
+    return null;
+  }
+
+  return <BannerCarousel data={activeBanners} autoPlay={true} />;
 };
 
 export const handleShare = async () => {
@@ -1212,7 +1223,6 @@ const LoyaltyHome = (props) => {
         />
       }
     >
-      {/* <BannerSection navigation={navigation} styles={styles} /> */}
 
       <HighLightedFeatures styles={styles} navigation={navigation} />
       {/* <Features styles={styles} navigation={navigation} /> */}
@@ -1222,9 +1232,10 @@ const LoyaltyHome = (props) => {
 
       {(loginData?.status_of_profile?.toLowerCase() == 'approved') && <HighlightedGifts setvisible={imageviewHandler} loginData={loginData} navigation={navigation} styles={styles} />}
 
-      <StreakSection streakDetails={streakDetails} userInfoData={userInfoData?.data?.result} navigation={navigation} styles={styles} />
+      {/* <StreakSection streakDetails={streakDetails} userInfoData={userInfoData?.data?.result} navigation={navigation} styles={styles} /> */}
       <SocialSection styles={styles} navigation={navigation} />
-      <CompetitiveBanner navigation={navigation} />
+      {/* <CompetitiveBanner navigation={navigation} /> */}
+      <BannerSection navigation={navigation} styles={styles} />
 
       <View style={{ marginVertical: 80 }} />
       {/* <HighlightBanner navigation={navigation} styles={styles} /> */}
@@ -1354,11 +1365,11 @@ const Card = ({ count, balance, openBottomSheet = () => { }, item, index, naviga
         <View>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
             <View>
-              <ThemedText style={{ fontSize: 22, fontWeight: 'bold' }}>#{count}</ThemedText>
+              <ThemedText style={{ fontSize: 22, fontWeight: 'bold', color: '#6a3dddff' }}>#{count}</ThemedText>
             </View>
 
             <View>
-              <ThemedText numberOfLines={2} style={{ fontSize: 12, fontWeight: 'bold' }}>{item?.title}</ThemedText>
+              <ThemedText numberOfLines={2} style={{ fontSize: 12, fontWeight: 'bold', color: '#6a3dddff' }}>{item?.title}</ThemedText>
             </View>
           </View>
 
@@ -1380,7 +1391,7 @@ const Card = ({ count, balance, openBottomSheet = () => { }, item, index, naviga
               Toast.show({ type: 'error', text1: 'You are not eligible for this gift', text2: 'kindly earn more points to avail this gift', visibilityTime: 2000 }) :
               navigation.navigate('LoyaltyGiftGallery', { from: 'top_five_gifts', item: item });
           }} >
-            <Text style={{ textAlign: 'center', color: '#fff', fontWeight: 'bold' }}>Claim</Text>
+            <Text style={{ textAlign: 'center', color: '#000', fontWeight: 'bold' }}>Claim</Text>
           </TouchableOpacity>
         </View>
       </View>

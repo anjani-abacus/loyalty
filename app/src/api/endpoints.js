@@ -19,7 +19,7 @@ export const LOG_OUT = 'logout';
 // export const BASE_URL = 'https://starkpaints-app-api.basiq360.com/api/loyalty/v1/';
 // export const BASE_URL = 'https://dev-starkpaints-app-api.basiq360.co.in/api/loyalty/v1/'; //stark paints dev
 
-export const BASE_URL = 'http://192.168.100.126:3000/api/loyalty/v1/' || 'http://api.basiq360.com/api/loyalty/v1/';
+export const BASE_URL = 'http://192.168.100.73:7000/api/loyalty/v1/' || 'http://api.basiq360.com/api/loyalty/v1/';
 // export const BASE_URL = 'https://app-api.basiq360.com/api/loyalty/v1/'; //basiq360
 
 export const PRODUCT_LIST = 'product-list';
@@ -28,6 +28,7 @@ export const GIFT_GALLERY = 'gift-gallery';
 export const TOP_5_GIFTS = 'get_highlighted_offers';
 export const INFLUENCER_LEDGER = 'influencer-ledger';
 export const CATEGORY_LIST = 'category-list';
+export const SUBCATEGORY_LIST = 'subcategory-list';
 export const DOCUMENT_CATALOGUE_LIST = 'document-catalogue-list';
 export const INFLUENCER_BADGE = 'influencer-badge';
 export const FAQ_QUESTION = 'faq-question';

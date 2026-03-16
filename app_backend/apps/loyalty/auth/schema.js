@@ -83,24 +83,24 @@ export const registrationSchema = Joi.object({
         // email: Joi.string().email().optional(),
 
         addressInfo: Joi.object({
-            country: Joi.string().optional(),
-            pincode: Joi.string().optional(),
-            state: Joi.string().required().messages({
-                'any.required': 'State is required.',
-                'string.empty': 'State cannot be empty.',
-            }),
-            district: Joi.string().required().messages({
-                'any.required': 'District is required.',
-                'string.empty': 'District cannot be empty.',
-            }),
-            city: Joi.string().required().messages({
-                'any.required': 'City is required.',
-                'string.empty': 'City cannot be empty.',
-            }),
-            area: Joi.string().required().messages({
-                'any.required': 'Area is required.',
-                'string.empty': 'Area cannot be empty.',
-            }),
+            // country: Joi.string().optional(),
+            // pincode: Joi.string().optional(),
+            // state: Joi.string().required().messages({
+            //     'any.required': 'State is required.',
+            //     'string.empty': 'State cannot be empty.',
+            // }),
+            // district: Joi.string().required().messages({
+            //     'any.required': 'District is required.',
+            //     'string.empty': 'District cannot be empty.',
+            // }),
+            // city: Joi.string().required().messages({
+            //     'any.required': 'City is required.',
+            //     'string.empty': 'City cannot be empty.',
+            // }),
+            // area: Joi.string().required().messages({
+            //     'any.required': 'Area is required.',
+            //     'string.empty': 'Area cannot be empty.',
+            // }),
         }).required()
     }).required(),
 

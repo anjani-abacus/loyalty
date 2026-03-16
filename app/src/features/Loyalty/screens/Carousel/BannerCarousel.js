@@ -1,91 +1,40 @@
 import React, { useState } from 'react';
-import { View, Dimensions, TouchableOpacity, Text, ImageBackground, StyleSheet } from 'react-native';
+import { View, Dimensions, StyleSheet } from 'react-native';
 import Carousel from 'react-native-reanimated-carousel';
-import { Images } from '../../../../core/assets';
+import FastImage from 'react-native-fast-image';
 import useActiveTheme from '../../../../core/components/Theme/useActiveTheme';
 
 const { width: screenWidth } = Dimensions.get('window');
 
-const carousalData = [
-  {
-    title: 'Scan QR Code',
-    subTitle: 'Earn Points',
-  },
-  {
-    title: 'Spin To Win',
-    subTitle: 'Spin and earn points',
-  },
-];
-
-const Card = () => {
+const Card = ({ item }) => {
   return (
-    <ImageBackground
-      source={Images.videoBg}
-      style={{ height: 200, width: '100%', backgroundColor: '#fff' }}
-      resizeMode="cover" // or "contain", "stretch", "repeat", "center"
-    />
+    <View style={styles.cardContainer}>
+      <FastImage
+        source={{
+          uri: item?.banner_image,
+          priority: FastImage.priority.high,
+        }}
+        style={styles.bannerImage}
+        resizeMode={FastImage.resizeMode.cover}
+      />
+    </View>
   );
 };
 
-function BannerCarousel({ autoPlay, showIndicator, height, navigation }) {
+function BannerCarousel({ data, autoPlay, height }) {
   const activeTheme = useActiveTheme();
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const styles = StyleSheet.create({
-    HighlightButton: {
-      borderRadius: 8,
-      paddingHorizontal: 10,
-      width: '100%',
-      backgroundColor: activeTheme.Primary,
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-    },
-    textWrapper: {
-      flex: 1,
-      paddingRight: 10,
-    },
-    HighlightButtonText: {
-      color: '#fff',
-      fontWeight: 'bold',
-      fontSize: 16,
-    },
-    HighlightButtonSubText: {
-      color: '#fafafa',
-      fontSize: 14,
-    },
-    image: {
-      width: 70,
-      height: 80,
-      borderRadius: 8,
-      overflow: 'hidden',
-    },
-    paginationContainer: {
-      flexDirection: 'row',
-      justifyContent: 'center',
-      marginBottom: 15,
-    },
-    dot: {
-      width: 18,
-      height: 3,
-      marginHorizontal: 5,
-    },
-    activeDot: {
-      backgroundColor: '#333',
-      width: 18,
-      height: 3,
-    },
-    inactiveDot: {
-      backgroundColor: '#bbb',
-    },
-  });
+  if (!data || data.length === 0) {
+    return null;
+  }
 
   return (
-    <>
+    <View style={styles.container}>
       <Carousel
-        data={carousalData}
-        width={screenWidth * 0.95}
-        height={height || 90}
+        data={data}
+        width={screenWidth}
+        height={height || 180}
         mode="normal"
         loop
         autoPlay={!!autoPlay}
@@ -94,25 +43,57 @@ function BannerCarousel({ autoPlay, showIndicator, height, navigation }) {
         style={{ alignSelf: 'center' }}
         onSnapToItem={(index) => setActiveIndex(index)}
         renderItem={({ item }) => (
-          <Card navigation={navigation} styles={styles} item={item} />
+          <Card item={item} />
         )}
       />
 
-      {showIndicator && (
-        <View style={styles.paginationContainer}>
-          {carousalData.map((_, i) => (
-            <View
-              key={i}
-              style={[
-                styles.dot,
-                i === activeIndex ? styles.activeDot : styles.inactiveDot,
-              ]}
-            />
-          ))}
-        </View>
-      )}
-    </>
+      <View style={styles.paginationContainer}>
+        {data.map((_, i) => (
+          <View
+            key={i}
+            style={[
+              styles.dot,
+              i === activeIndex ? styles.activeDot : styles.inactiveDot,
+            ]}
+          />
+        ))}
+      </View>
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    position: 'relative',
+  },
+  cardContainer: {
+    flex: 1,
+    overflow: 'hidden',
+  },
+  bannerImage: {
+    width: '100%',
+    height: '100%',
+  },
+  paginationContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    position: 'absolute',
+    bottom: 10,
+    width: '100%',
+  },
+  dot: {
+    width: 8,
+    height: 3,
+    marginHorizontal: 4,
+    borderRadius: 2,
+  },
+  activeDot: {
+    backgroundColor: '#fff',
+    width: 20,
+  },
+  inactiveDot: {
+    backgroundColor: 'rgba(255, 255, 255, 0.5)',
+  },
+});
 
 export default BannerCarousel;

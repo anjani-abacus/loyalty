@@ -38,6 +38,7 @@ import {
   GET_DEALER_BY_CODE,
   BANNER_LIST,
   TOP_5_GIFTS,
+  SUBCATEGORY_LIST,
 } from '../endpoints';
 export const fetchProductList = (request) => axios.post(PRODUCT_LIST, request);
 export const fetchProductDetail = (request) => axios.post(PRODUCT_DETAIL, request);
@@ -46,6 +47,7 @@ export const fetchInfluencerLedger = (request) => axios.post(INFLUENCER_LEDGER, 
 export const fetchRedeemGiftRequestList = (request) => axios.get(REDEEM_GIFT_REQUEST_LIST, request);
 export const fetchTopFiveGiftList = (request) => axios.get(TOP_5_GIFTS, request);
 export const fetchCategoryList = (request) => axios.post(CATEGORY_LIST, request);
+export const fetchSubCategoryList = (request) => axios.post(SUBCATEGORY_LIST, request);
 export const fetchDocumentCatalogueList = (request) => axios.post(DOCUMENT_CATALOGUE_LIST, request);
 export const fetchInfluencerBadge = (request) => axios.post(INFLUENCER_BADGE, request);
 export const fetchFaqQuestion = (request) => axios.post(FAQ_QUESTION, request);
@@ -58,8 +60,8 @@ export const fetchFeedList = (request) => axios.get(GET_ALL_POST, request);
 export const fetchMyFeedList = (request) => axios.get(GET_POST_BY_ID, request);
 export const fetchLeaderBoardUserRank = (request) => axios.get(LEADERBOARD_USER_RANK, request);
 export const fetchLeaderBoard = (request) => {
-    const query = request?.type == 'State Wise' ? LEADERBOARD_STATE_WISE : LEADERBOARD_DISTRICT_WISE;
-    return axios.get(query, request);
+  const query = request?.type == 'State Wise' ? LEADERBOARD_STATE_WISE : LEADERBOARD_DISTRICT_WISE;
+  return axios.get(query, request);
 };
 export const fetchNotificationList = (request) => axios.post(NOTIFICATION_LIST, request);
 export const readNotificationStatus = (request) => axios.put(NOTIFICATION_SET_READ_LIST, request);
@@ -67,16 +69,16 @@ export const likePost = (request) => axios.get(LIKE_POST, request);
 export const fetchDistrictList = (request) => axios.post(DISTRICT_LIST, request);
 export const fetchAddressDetails = (request) => axios.post(PINCODE_DETAIL, request);
 export const updateDocuments = (request) => axios.post(UPDATE_DOCUMENT, request, {
-  headers:{
+  headers: {
     'Content-Type': 'multipart/form-data',
   },
 });
-export const verifyRedeemOtp = request =>  axios.post(REDEEM_MOBILE_VERIFICATION, request);
-export const requestRedeemOtp = request =>  axios.post(REDEEM_REQUEST_OTP, request);
-export const addRedeemRequest = request =>  axios.post(ADD_REDEEM_REQUEST, request);
+export const verifyRedeemOtp = request => axios.post(REDEEM_MOBILE_VERIFICATION, request);
+export const requestRedeemOtp = request => axios.post(REDEEM_REQUEST_OTP, request);
+export const addRedeemRequest = request => axios.post(ADD_REDEEM_REQUEST, request);
 
-export const addTicket = request =>  axios.post(CREATE_TICKET, request, {
-  headers:{
+export const addTicket = request => axios.post(CREATE_TICKET, request, {
+  headers: {
     'Content-Type': 'multipart/form-data',
   },
 });

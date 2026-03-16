@@ -1,89 +1,56 @@
 import React, { useEffect, useState } from "react";
 import { Controller, useWatch } from "react-hook-form";
-import { Table, TableHeader, TableBody, TableRow, TableCell, TableHead } from "@/components/ui/table";
 
-function StateChecklist({ stateAreas, setStateAreas, fetchDistrictList, title, groupedItems = {}, selectedItems = [], onChange }) {
-  const handleCheck = (item, isChecked) => {
+function StateChecklist({ setStateAreas, fetchDistrictList, title, items = [], selectedItems = [], onChange }) {
+  const handleToggle = (item) => {
+    const isSelecting = !selectedItems.includes(item);
 
-    if (isChecked) {
+    if (isSelecting) {
       fetchDistrictList({ state_name: item }, {
         onSuccess: (resp) => {
-
-          setStateAreas(() => {
-            const arr = stateAreas;
-            const data = arr?.map((elem, i) => {
-              const key = Object.keys(elem)[0]
-              if (key?.toLowerCase() == item?.toLowerCase()) {
-                arr[i][key?.toLowerCase()] = resp?.data
-              }
-            })
-            return arr;
-          })
+          setStateAreas(prev => ({
+            ...prev,
+            [item]: resp?.data || []
+          }));
         }
-      })
+      });
     }
 
-    let updated;
-    if (selectedItems.includes(item)) {
-      updated = selectedItems.filter((i) => i !== item);
-    } else {
-      updated = [...selectedItems, item];
-    }
+    const updated = isSelecting
+      ? [...selectedItems, item]
+      : selectedItems.filter((i) => i !== item);
     onChange?.(updated);
   };
 
   return (
-    <div className="overflow-auto w-[300px] bg-background text-foreground border-[#E8EDF7] rounded-lg p-2">
-      <h3 className="flex items-center gap-2 text-sm font-semibold text-foreground mb-2">{title}</h3>
-      <div className="max-h-[300px] overflow-auto border rounded-lg">
-        <Table className="table-auto w-full border-collapse min-h-[100px]">
-          <TableHeader className="bg-card border-b">
-            <TableRow className="bg-section-background"> 
-              <TableHead className="px-3 py-2 text-left w-16">#</TableHead>
-              <TableHead className="px-3 py-2 text-left">Item</TableHead>
-              <TableHead className="px-3 py-2 text-center w-24">Select</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {Object.keys(groupedItems).length === 0 && (
-              <TableRow>
-                <TableCell colSpan={3} className="text-center py-4">
-                  No items available
-                </TableCell>
-              </TableRow>
-            )}
-
-            {Object.entries(groupedItems)?.map(([group, items]) => (
-              <React.Fragment key={group}>
-                <TableRow className="bg-section-background">
-                  <TableCell colSpan={3} className="px-3 py-1 font-semibold">
-                    {group}
-                  </TableCell>
-                </TableRow>
-
-                {items?.map((item, index) => (
-                  <TableRow key={item} className="odd:bg-section-background even:bg-card">
-                    <TableCell className="px-3 py-2 text-center">{index + 1}</TableCell>
-                    <TableCell
-                      className={`px-3 py-2 ${selectedItems.includes(item) ? "line-through text-muted-foreground" : ""
-                        }`}
-                    >
-                      {item}
-                    </TableCell>
-                    <TableCell className="px-3 py-2 text-center">
-                      <input
-                        type="checkbox"
-                        checked={selectedItems.includes(item)}
-                        onChange={(e) => handleCheck(item, e.target.checked)}
-                        className="cursor-pointer"
-                      />
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </React.Fragment>
-            ))}
-          </TableBody>
-        </Table>
+    <div className="w-[280px] bg-background text-foreground border border-border rounded-lg p-2">
+      <h3 className="text-sm font-semibold text-foreground mb-2">{title}</h3>
+      <div className="max-h-[300px] overflow-y-auto border rounded-lg">
+        {(!items || items.length === 0) ? (
+          <div className="text-center py-4 text-sm text-muted-foreground">No items available</div>
+        ) : (
+          items.map((item, index) => {
+            const isSelected = selectedItems.includes(item);
+            return (
+              <div
+                key={item}
+                onClick={() => handleToggle(item)}
+                className={`flex items-center gap-2 px-3 py-2 cursor-pointer select-none border-b last:border-b-0 hover:bg-muted transition-colors
+                  ${isSelected ? "bg-primary/10 font-medium" : "odd:bg-section-background even:bg-card"}`}
+              >
+                <input
+                  type="checkbox"
+                  checked={isSelected}
+                  onChange={() => {}} // controlled via row click
+                  className="pointer-events-none shrink-0"
+                />
+                <span className="text-sm truncate" title={item}>
+                  {index + 1}. {item}
+                </span>
+              </div>
+            );
+          })
+        )}
       </div>
     </div>
   );
@@ -91,100 +58,76 @@ function StateChecklist({ stateAreas, setStateAreas, fetchDistrictList, title, g
 
 
 function DistrictChecklist({ title, groupedItems = {}, selectedItems = [], onChange }) {
-  const handleCheck = (item) => {
-    let updated;
-    if (selectedItems.includes(item)) {
-      updated = selectedItems.filter((i) => i !== item);
-    } else {
-      updated = [...selectedItems, item];
-    }
+  const handleToggle = (item) => {
+    const updated = selectedItems.includes(item)
+      ? selectedItems.filter((i) => i !== item)
+      : [...selectedItems, item];
     onChange?.(updated);
   };
 
+  const allDistricts = Object.values(groupedItems).flat();
+  const hasItems = allDistricts.length > 0;
+  const hasStates = Object.keys(groupedItems).length > 0;
+
   return (
-    <div className="overflow-auto w-[300px] bg-background text-foreground border-[#E8EDF7] rounded-lg p-2">
-      <h3 className="flex items-center gap-2 text-sm font-semibold text-foreground mb-2">{title}</h3>
-      <div className="max-h-[300px] overflow-auto border rounded-lg">
-        <Table className="table-auto w-full border-collapse min-h-[100px]">
-          <TableHeader className="bg-background border-b">
-            <TableRow className="bg-section-background">
-              <TableHead className="px-3 py-2 text-left w-16">#</TableHead>
-              <TableHead className="px-3 py-2 text-left">Item</TableHead>
-              <TableHead className="px-3 py-2 text-center w-24">Select</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {Object.keys(groupedItems).length === 0 && (
-              <TableRow>
-                <TableCell colSpan={3} className="text-center py-4">
-                  No items available
-                </TableCell>
-              </TableRow>
-            )}
-
-            {Object.entries(groupedItems)?.map(([group, items]) => (
-              <React.Fragment key={group}>
-                <TableRow className="bg-section-background">
-                  <TableCell colSpan={3} className="px-3 py-1 font-semibold">
-                    {group}
-                  </TableCell>
-                </TableRow>
-
-                {items?.map((item, index) => (
-                  <TableRow key={item} className="odd:bg-section-background even:bg-background">
-                    <TableCell className="px-3 py-2 text-center">{index + 1}</TableCell>
-                    <TableCell
-                      className={`px-3 py-2 ${selectedItems.includes(item) ? "line-through text-muted-foreground" : ""
-                        }`}
-                    >
-                      {item}
-                    </TableCell>
-                    <TableCell className="px-3 py-2 text-center">
-                      <input
-                        type="checkbox"
-                        checked={selectedItems.includes(item)}
-                        onChange={() => handleCheck(item)}
-                        className="cursor-pointer"
-                      />
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </React.Fragment>
-            ))}
-          </TableBody>
-        </Table>
+    <div className="w-[280px] bg-background text-foreground border border-border rounded-lg p-2">
+      <h3 className="text-sm font-semibold text-foreground mb-2">{title}</h3>
+      <div className="max-h-[300px] overflow-y-auto border rounded-lg">
+        {!hasStates ? (
+          <div className="text-center py-4 text-sm text-muted-foreground">Select a state first</div>
+        ) : !hasItems ? (
+          <div className="text-center py-4 text-sm text-muted-foreground">Loading districts…</div>
+        ) : (
+          Object.entries(groupedItems).map(([state, districts]) => (
+            <React.Fragment key={state}>
+              <div className="px-3 py-1 text-xs font-semibold bg-muted text-muted-foreground uppercase tracking-wide">
+                {state}
+              </div>
+              {districts.map((item, index) => {
+                const isSelected = selectedItems.includes(item);
+                return (
+                  <div
+                    key={item}
+                    onClick={() => handleToggle(item)}
+                    className={`flex items-center gap-2 px-3 py-2 cursor-pointer select-none border-b last:border-b-0 hover:bg-muted transition-colors
+                      ${isSelected ? "bg-primary/10 font-medium" : "odd:bg-section-background even:bg-card"}`}
+                  >
+                    <input
+                      type="checkbox"
+                      checked={isSelected}
+                      onChange={() => {}}
+                      className="pointer-events-none shrink-0"
+                    />
+                    <span className="text-sm truncate" title={item}>
+                      {index + 1}. {item}
+                    </span>
+                  </div>
+                );
+              })}
+            </React.Fragment>
+          ))
+        )}
       </div>
     </div>
   );
 }
 
-export default function StateAreaChecklist({ control, districtList, stateList, fetchDistrictList }) {
-
-
-
-  const [stateAreas, setStateAreas] = useState({
-    Maharashtra: ["Mumbai", "Pune", "Nagpur"],
-    Delhi: ["Dwarka", "Saket", "Karol Bagh"],
-    Karnataka: ["Bangalore", "Mysore"],
-    Gujarat: ["Ahmedabad", "Surat"],
-  });
+export default function StateAreaChecklist({ control, stateList, fetchDistrictList }) {
+  const [stateAreas, setStateAreas] = useState({});
 
   useEffect(() => {
-    setStateAreas(() => stateList?.map(elem => ({ [elem?.toLowerCase()]: [] })))
-  }, [stateList])
+    if (stateList?.length) {
+      const obj = {};
+      stateList.forEach(name => { obj[name] = []; });
+      setStateAreas(obj);
+    }
+  }, [stateList]);
 
-  // const states = Object.keys(stateAreas);
-
-  useEffect(()=>{
-    console.log('stateAreas ===> ', stateAreas)
-  }, [stateAreas])
-
-  // ✅ This watches the "states" field and triggers re-render when it changes
   const selectedStates = useWatch({ control, name: "states", defaultValue: [] });
 
   return (
-    <div className="flex gap-6">
-      {/* States */}
+    <div className="flex gap-4">
+      {/* States panel */}
       <Controller
         name="states"
         control={control}
@@ -192,25 +135,23 @@ export default function StateAreaChecklist({ control, districtList, stateList, f
         render={({ field }) => (
           <StateChecklist
             title="Select States"
-            groupedItems={{ States: stateList }}
+            items={stateList}
             selectedItems={field.value}
             fetchDistrictList={fetchDistrictList}
-            stateAreas={stateAreas}
             setStateAreas={setStateAreas}
             onChange={field.onChange}
-            className="bg-red-700"
           />
         )}
       />
 
-      {/* Areas (depends on selected states) */}
+      {/* Districts panel */}
       <Controller
         name="areas"
         control={control}
         defaultValue={[]}
         render={({ field }) => {
           const groupedAreas = selectedStates.reduce((acc, state) => {
-            if (stateAreas[state]) acc[state] = stateAreas[state];
+            acc[state] = stateAreas[state] || [];
             return acc;
           }, {});
 

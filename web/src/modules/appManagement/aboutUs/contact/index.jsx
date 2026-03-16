@@ -19,21 +19,22 @@ const contactSchema = Yup.object().shape({
     .matches(/^[0-9]{10}$/, "Enter a valid 10-digit contact number"),
   contact_number_2: Yup.string()
     .nullable()
-    .matches(/^[0-9]{10}$/, "Enter a valid 10-digit number")
-    .optional(),
+    .optional()
+    .matches(/^[0-9]{10}$/, { message: "Enter a valid 10-digit number", excludeEmptyString: true }),
   email: Yup.string()
     .email("Invalid email format")
     .required("Email is required"),
   website_url: Yup.string()
-    .url("Enter a valid website URL")
     .required("Website URL is required"),
   address: Yup.string().required("Address is required"),
   iframe_url_map: Yup.string()
     .required("Google Map URL is required"),
-  instagram_url: Yup.string().url("Invalid Instagram URL").nullable(),
-  facebook_url: Yup.string().url("Invalid Facebook URL").nullable(),
-  linkedin_url: Yup.string().url("Invalid LinkedIn URL").nullable(),
-  twitter_url: Yup.string().url("Invalid Twitter URL").nullable(),
+  instagram_url: Yup.string().nullable().optional(),
+  facebook_url: Yup.string().nullable().optional(),
+  linkedin_url: Yup.string().nullable().optional(),
+  twitter_url: Yup.string().nullable().optional(),
+  youtube_url: Yup.string().nullable().optional(),
+  about_us: Yup.string().nullable().optional(),
 });
 
 export const Contact = () => {
@@ -57,13 +58,12 @@ export const Contact = () => {
     const company = contactData;
     console.log(company)
     setSelectedCompany(company);
-    setSelectedImage(company?.profile_img)
-    reset(company);
+    setSelectedImage(company?.profile_img);
+    reset(company ?? {});
   }, [contactData, reset]);
 
   /* --- Update Handler --- */
   const onSubmit = async (data) => {
-    if (!selectedCompany) return;
 
     console.log('update data == ', data)
 
@@ -84,9 +84,10 @@ export const Contact = () => {
     }
 
     updateContactData({
+      id: selectedCompany?.id,
       payload: formData,
-      onSuccess: () => alert("✅ Contact details updated successfully!"),
-      onError: (err) => alert(err.message || "Update failed"),
+      onSuccess: () => toast.success("Contact details updated successfully!"),
+      onError: (err) => toast.error(err?.message || "Update failed"),
     });
   };
 
@@ -96,7 +97,7 @@ export const Contact = () => {
     <Container>
       <DetailHeader pageTitle="Contact Us" backPath="/" />
 
-      <form onSubmit={handleSubmit(onSubmit)} className="p-6">
+      <form onSubmit={handleSubmit(onSubmit, (errs) => console.log('VALIDATION ERRORS:', errs))} className="p-6">
         <FormProvider {...methods}>
           <div className=" rounded-lg shadow-md flex flex-col gap-4">
             <div className="p-6 mb-5 rounded-lg bg-section-background ">

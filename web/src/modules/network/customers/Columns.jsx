@@ -1,13 +1,14 @@
 import { Badge } from "../../../components/ui/Badge";
-import { CheckCircle2Icon, LoaderIcon, ChevronDown, Check } from "lucide-react";
+import { CheckCircle2Icon, LoaderIcon, ChevronDown, Check, Pencil, Trash2 } from "lucide-react";
 import moment from "moment";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import SwitchButton from "../../../components/ui/Switch";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
+import { Button } from "@/components/ui/button";
 
 
-export const getColumns = ({ selectedType, handleTypeChange = () => { }, handleStatusChange = () => { }, limit, page }) => {
+export const getColumns = ({ selectedType, handleTypeChange = () => { }, handleStatusChange = () => { }, handleEdit = () => { }, handleDelete = () => { }, limit, page }) => {
   return [
   {
     accessorKey: "",
@@ -62,6 +63,20 @@ export const getColumns = ({ selectedType, handleTypeChange = () => { }, handleS
     filterType: "input",
     cell: ({ row }) => (
       <span >{row.original.dealer_mobile}</span>
+    ),
+  },
+  {
+    accessorKey: "action",
+    header: "Action",
+    cell: ({ row }) => (
+      <div className="flex items-center gap-1">
+        <Button variant="ghost" size="icon" onClick={() => handleEdit(row.original)}>
+          <Pencil className="w-4 h-4 text-green-600" />
+        </Button>
+        <Button variant="ghost" size="icon" onClick={() => handleDelete(row.original.id)}>
+          <Trash2 className="w-4 h-4 text-red-600" />
+        </Button>
+      </div>
     ),
   },
   // {

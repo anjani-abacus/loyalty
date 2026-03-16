@@ -6,20 +6,24 @@ import { RateLimiterMemory } from "rate-limiter-flexible";
 
 export const getProductList = async (req, res, next) => {
   try {
-    const { product_name = "", product_id = "" } = req.body || {};
+    const { product_name = "", product_id = "", category_id, sub_category_id } = req.body || {};
 
     const where = { del: false };
 
     if (product_name !== "") {
-      where.product_name = {
-        contains: product_name
-      };
+      where.product_name = { contains: product_name };
     }
 
     if (product_id !== "") {
-      where.product_id = {
-        contains: product_id
-      };
+      where.product_id = { contains: product_id };
+    }
+
+    if (category_id) {
+      where.category_id = Number(category_id);
+    }
+
+    if (sub_category_id) {
+      where.sub_category_id = Number(sub_category_id);
     }
 
     const rawProducts = await prisma.master_product.findMany({
@@ -157,22 +161,40 @@ export const getInfluencerLedger = async (req, res, next) => {
 
 export const getCategoryList = async (req, res, next) => {
   try {
-
-
-    const catgeoryData = await prisma.master_category.findMany();
-
-    if (!catgeoryData) {
-      return res.status(404).json({
-        success: false,
-        message: "Category not found",
-        result: {},
-      });
-    }
+    const catgeoryData = await prisma.master_category.findMany({
+      where: { del: false, status: true },
+      select: { id: true, category: true, image: true },
+    });
 
     return res.status(200).json({
       success: true,
-      message: `Category List`,
+      message: catgeoryData.length ? `Category List` : `No Categories Found`,
       result: catgeoryData,
+    });
+  } catch (error) {
+    return next(error);
+  }
+};
+
+export const getSubCategoryList = async (req, res, next) => {
+  try {
+    const { category_id } = req.body || {};
+
+    const where = { del: false, status: true };
+
+    if (category_id) {
+      where.master_category_id = Number(category_id);
+    }
+
+    const subCategoryData = await prisma.master_sub_category.findMany({
+      where,
+      select: { id: true, sub_category_name: true, image: true, master_category_id: true, master_category_name: true },
+    });
+
+    return res.status(200).json({
+      success: true,
+      message: subCategoryData.length ? `Subcategory List` : `No Subcategories Found`,
+      result: subCategoryData,
     });
   } catch (error) {
     return next(error);

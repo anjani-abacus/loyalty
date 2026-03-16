@@ -54,7 +54,7 @@ export const ProductValidationSchema = Joi.object({
     feature: Joi.boolean().optional(),
     hsn_code: Joi.string().max(100).optional().allow(null, ''),
     stock: Joi.number().optional().allow(null),
-    // product_size: Joi.string().max(100).optional(),
+    product_size: Joi.string().max(100).optional().allow(null, ''),
     product_thickness: Joi.string().max(100).optional(),
     sizes: Joi.string().optional().allow(null, ''),
     is_featured: Joi.boolean().optional(),

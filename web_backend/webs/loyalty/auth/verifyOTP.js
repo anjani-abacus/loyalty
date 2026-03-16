@@ -25,8 +25,8 @@ export const verifyOTP = async (req, res, next) => {
                     expiresIn: '7D',
                     algorithm: 'HS256'
                 });
-                await redisClient.setEx(`user:${user.id}:accessToken`, 60 * 60 * 24, accessToken);
-                await redisClient.setEx(`user:${user.id}:refreshToken`, 60 * 60 * 24 * 7, refreshToken);
+                await redisClient.setEx(`user:${user.id}:web:accessToken`, 60 * 60 * 24, accessToken);
+                await redisClient.setEx(`user:${user.id}:web:refreshToken`, 60 * 60 * 24 * 7, refreshToken);
                 res.cookie('refreshToken', refreshToken, {
                     httpOnly: true,
                     sameSite: 'none',

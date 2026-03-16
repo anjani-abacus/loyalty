@@ -50,7 +50,8 @@ export const fetchUserListApi = async () => {
 
 export const fetchContacts = async () => {
     const { data } = await client.get(CONTACT_US_LIST);
-    return data?.data || [];
+    const result = data?.data;
+    return (result && !Array.isArray(result)) ? result : null;
 };
 
 export const updateContactApi = async (id, payload) => {

@@ -69,11 +69,10 @@ const Catalogue = ({ navigation }) => {
   const fileExist = async ({ url, fileName = 'document.pdf' }) => {
     try {
 
-      const { dirs } = RNFetchBlob.fs;
       const path =
         Platform.OS === 'ios'
-          ? `${dirs.DocumentDir}/${fileName}`
-          : `${dirs.DownloadDir}/${fileName}`;
+          ? `${RNFS.DocumentDirectoryPath}/${fileName}`
+          : `${RNFS.DownloadDirectoryPath || RNFS.DocumentDirectoryPath}/${fileName}`;
 
       console.log(path);
       const exists = await RNFS.exists(path);

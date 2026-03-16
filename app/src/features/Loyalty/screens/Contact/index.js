@@ -268,7 +268,7 @@ export const AboutUs = ({ navigation }) => {
           style={{ height: 140 }}
           // style={[styles.headerImage, StyleSheet.absoluteFillObject]}
           resizeMode="contain"
-         />
+        />
 
 
       </Animated.View>
@@ -481,7 +481,7 @@ export const ContactUs = ({ navigation }) => {
       <BottomSheetModalProvider>
 
         {isRefreshing ? (
-          <AppLoader loading={isRefreshing} color={AppTheme.Dark} size={40} />) :
+          <AppLoader2 loading={isRefreshing} color={AppTheme.Dark} size={40} />) :
           (
             <>
               <StatusBarHeader height={StatusBar.currentHeight} />

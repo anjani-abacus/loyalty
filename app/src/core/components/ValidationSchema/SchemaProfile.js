@@ -14,17 +14,17 @@ export const editProfileSchema = Yup.object().shape({
   // company_name: Yup.string().required('This Field Is Required'),
   name: Yup.string().min(3, 'Minimum 3 Words').required('This Field Is Required'),
   email: Yup.string().email('Email Is Invalid'),
-  dob: Yup.string().required('This Field Is Required'),
+  dob: Yup.string().nullable(),
   doa: Yup.string(),
   dealer_name: Yup.string().matches(/^\S/, 'First character cannot be a space').matches(/^[A-Za-z ]+$/, 'Only Alphabets Are Allowed'),
   dealer_mobile: Yup.string().length(10, 'Mobile no. must be 10 digits').matches(/^[6-9][0-9]{0,9}$/, 'Invalid Mobile No.'),
   distributor_name: Yup.string().matches(/^\S/, 'First character cannot be a space').matches(/^[A-Za-z ]+$/, 'Only Alphabets Are Allowed'),
 
   // type: Yup.string().required('This Field Is Required'),
-  address: Yup.string().matches(/^\S/, 'First character cannot be a space').required('This Field Is Required'),
-  pincode: Yup.string().min(6, 'Minimum 6 Digits Required').matches(/^[0-9]+$/, 'Must be only digits').required('This Field Is Required'),
-  state: Yup.string().required('This Field Is Required'),
-  district: Yup.string().required('This Field Is Required'),
+  address: Yup.string().matches(/^\S/, 'First character cannot be a space').nullable(),
+  pincode: Yup.string().min(6, 'Minimum 6 Digits Required').matches(/^[0-9]+$/, 'Must be only digits').nullable(),
+  state: Yup.string().nullable(),
+  district: Yup.string().nullable(),
   document_type: Yup.string().required('This Field Is Required'),
   pan_no: Yup.string()
     .transform((value) => (value ? value.toUpperCase() : value))
@@ -161,14 +161,14 @@ export const createUserSchema = Yup.object().shape({
       .required('User name is required'),
 
     birth_date: Yup.date()
-      .required('Date of birth is required')
+      .nullable()
       .typeError('Date of Birth must be a valid date')
       .max(new Date(), 'Birth date cannot be in the future')
       .test(
         'age-limit',
         'You must be at least 18 years old',
         function (value) {
-          if (!value) {return true;}
+          if (!value) { return true; }
           const today = new Date();
           const age = today.getFullYear() - value.getFullYear();
           return age >= 18;
@@ -183,27 +183,27 @@ export const createUserSchema = Yup.object().shape({
 
     addressInfo: Yup.object().shape({
       country: Yup.string()
-        .required('Country is required')
+        .nullable()
         .matches(/^[A-Za-z\s]+$/, 'Country must only contain alphabets'),
 
       pincode: Yup.string()
         .matches(/^[0-9]{6}$/, 'Pincode must be exactly 6 digits')
-        .required('Pincode is required'),
+        .nullable(),
 
       state: Yup.string()
-        .required('State is required')
+        .nullable()
         .matches(/^[A-Za-z\s]+$/, 'State must only contain alphabets'),
 
       district: Yup.string()
-        .required('District is required')
+        .nullable()
         .matches(/^[A-Za-z\s]+$/, 'District must only contain alphabets'),
 
       city: Yup.string()
-        .required('City is required')
+        .nullable()
         .matches(/^[A-Za-z\s]+$/, 'City must only contain alphabets'),
 
       area: Yup.string()
-        .required('Area is required')
+        .nullable()
         .max(100, 'Area must not exceed 100 characters'),
     }).required('Address info is required'),
   }).required('Basic info is required'),
@@ -284,7 +284,7 @@ export const updateUserSchema = (updateType) => Yup.object().shape({
           'age-limit',
           'You must be at least 18 years old',
           function (value) {
-            if (!value) {return true;}
+            if (!value) { return true; }
             const today = new Date();
             const age = today.getFullYear() - value.getFullYear();
             return age >= 18;

@@ -4,9 +4,9 @@ import axios from 'axios';
 // Define the base URL
 
 // // live url
-export const BASE_URL = 'https://asdf.basiq360.com/api/index.php/app/';
-export const UPLOAD_URL = 'https://portal.basiq360.com/api/uploads/';
-export const SAVE_GEOLOCATION = 'https://portal.basiq360.com/api/index.php/CronJob/saveGeoLocation';
+export const BASE_URL = 'http://192.168.100.73:7000/api/loyalty/v1/';
+export const UPLOAD_URL = 'http://192.168.100.73:7000/api/uploads/';
+export const SAVE_GEOLOCATION = 'http://192.168.100.73:7000/api/index.php/CronJob/saveGeoLocation';
 
 
 // demo url

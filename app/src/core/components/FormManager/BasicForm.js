@@ -20,7 +20,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import * as Animatable from 'react-native-animatable';
 
 
-const BasicForm = ({formType = 'registration'}) => {
+const BasicForm = ({ formType = 'registration' }) => {
   const { values, handleChange, handleSubmit, setFieldValue, errors, touched, validateForm } = useFormikContext();
   const { t } = useTranslation();
   const GlobelStyle = useGlobelStyle();
@@ -100,38 +100,38 @@ const BasicForm = ({formType = 'registration'}) => {
     </View>
 
     {formType != 'update' && <>
-    <View style={GlobelStyle.mt8}>
-    <RenderLabel value={values?.basicInfo?.influencer_type_name} label="Select Your Trade / Profession" />
-    <Dropdown
-      style={[GlobelStyle.dropdown]}
-      placeholderStyle={GlobelStyle.placeholderStyle}
-      selectedTextStyle={[GlobelStyle.selectedTextStyle]}
-      inputSearchStyle={GlobelStyle.inputSearchStyle}
-      iconStyle={GlobelStyle.iconStyle}
-      itemTextStyle={GlobelStyle.selectedTextStyle}
-      disable={formType == 'update'}
-      data={dropdownData}
-      containerStyle={GlobelStyle.DropDowncontainer}
-      itemContainerStyle={GlobelStyle.itemContainerStyle}
-      search
-      maxHeight={300}
-      name="influencer_type_name"
-      labelField="label"
-      valueField="value"
-      placeholder={t('Select Your Trade / Profession') + ' *'}
-      searchPlaceholder="Search..."
-      value={values?.basicInfo?.influencer_type_name}
-      onChange={item => {
-        setFieldValue('basicInfo.influencer_type_name', item?.value);
-      }}
-    />
-    </View>
+      <View style={GlobelStyle.mt8}>
+        <RenderLabel value={values?.basicInfo?.influencer_type_name} label="Select Your Trade / Profession" />
+        <Dropdown
+          style={[GlobelStyle.dropdown]}
+          placeholderStyle={GlobelStyle.placeholderStyle}
+          selectedTextStyle={[GlobelStyle.selectedTextStyle]}
+          inputSearchStyle={GlobelStyle.inputSearchStyle}
+          iconStyle={GlobelStyle.iconStyle}
+          itemTextStyle={GlobelStyle.selectedTextStyle}
+          disable={formType == 'update'}
+          data={dropdownData}
+          containerStyle={GlobelStyle.DropDowncontainer}
+          itemContainerStyle={GlobelStyle.itemContainerStyle}
+          search
+          maxHeight={300}
+          name="influencer_type_name"
+          labelField="label"
+          valueField="value"
+          placeholder={t('Select Your Trade / Profession') + ' *'}
+          searchPlaceholder="Search..."
+          value={values?.basicInfo?.influencer_type_name}
+          onChange={item => {
+            setFieldValue('basicInfo.influencer_type_name', item?.value);
+          }}
+        />
+      </View>
 
-    {errors?.basicInfo?.influencer_type_name && touched.basicInfo?.influencer_type_name && (
-      <Caption style={[GlobelStyle.errorMsg]}>
-        {errors.basicInfo?.influencer_type_name}
-      </Caption>
-    )}
+      {errors?.basicInfo?.influencer_type_name && touched.basicInfo?.influencer_type_name && (
+        <Caption style={[GlobelStyle.errorMsg]}>
+          {errors.basicInfo?.influencer_type_name}
+        </Caption>
+      )}
     </>}
 
     <View style={[GlobelStyle.mt8]}>
@@ -151,7 +151,7 @@ const BasicForm = ({formType = 'registration'}) => {
       </Caption>
     )}
 
-    <View style={[GlobelStyle.mt8]}>
+    {/* <View style={[GlobelStyle.mt8]}>
       <TouchableOpacity onPress={() => setDobVisible(true)}>
         <AppTextInput
           label="Date of Birth *"
@@ -196,7 +196,7 @@ const BasicForm = ({formType = 'registration'}) => {
       <Caption style={[GlobelStyle.errorMsg]}>
         {errors?.basicInfo?.birth_date}
       </Caption>
-    )}
+    )} */}
 
     {/* <View style={[GlobelStyle.mt8]}>
       <AppTextInput

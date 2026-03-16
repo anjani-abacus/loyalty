@@ -13,7 +13,7 @@ import {
 import FastImage from 'react-native-fast-image';
 import AppBoldText from '../../../../core/components/BoldText/AppBoldText';
 import AppButton from '../../../../core/components/Button/AppButton';
-import AppLoader from '../../../../core/components/Loader/AppLoader';
+import AppLoader, { AppLoader2 } from '../../../../core/components/Loader/AppLoader';
 import useActiveTheme from '../../../../core/components/Theme/useActiveTheme';
 import { UPLOAD_URL } from '../../../../services/BaseService';
 import { ApiCall } from '../../../../services/ServiceProvider';
@@ -32,117 +32,117 @@ const ProductDetail = ({ route, navigation }) => {
   const [productDetail, setProductDetail] = useState([]);
 
   const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#FFF',
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-  },
-  outerContainer: {
-    backgroundColor: '#004db2',
-    height: '100%',
-  },
-  uploadDocContainer: {
-    marginTop: 16,
-  },
-  uploadDocTitle: {
-    fontSize: 16,
-    fontWeight: '700',
-    marginBottom: 8,
-  },
-  imageList: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-  },
-  companyName: {
-    gap: 5,
-    marginVertical: 10,
-  },
-  companyNameText: {
-    fontSize: 20,
-    color: '#2B3348',
-    fontWeight: '600',
-  },
-  countWrapper: {
-    gap: 15,
-  },
-  countBox: {
-    borderWidth: 1,
-    borderColor: '#E5EAF1',
-    gap: 5,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    borderRadius: 4,
-  },
-  imgContainer: {
-    margin: 4,
-    borderRadius: 10,
-    backgroundColor: '#EDEDED',
-  },
-  uploadedImage: {
-    width: 100,
-    height: 100,
-    borderRadius: 10,
-  },
-  countValue: {
-    color: 'black',
-    fontWeight: '700',
-  },
-  amtBox: {},
-  amtValue: {
-    fontWeight: '700',
-    color: '#004BAC',
-  },
-  cardFooter: {
-    paddingHorizontal: 15,
-    paddingVertical: 10,
-  },
-  Pending: {
-    color: '#FF9F00',
-    fontSize: 14,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    backgroundColor: '#FFF7EA',
-    borderRadius: 5,
-    marginLeft: 10,
-  },
-  Approved: {
-    color: '#43BF57',
-    fontSize: 14,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    backgroundColor: '#E2FFE7',
-    borderRadius: 5,
-    marginLeft: 10,
-  },
-  Completed: {
-    color: '#43BF57',
-    fontSize: 14,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    backgroundColor: '#E2FFE7',
-    borderRadius: 5,
-    marginLeft: 10,
-  },
-  Cancel: {
-    color: '#E92828',
-    fontSize: 14,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    backgroundColor: '#FFE5E5',
-    borderRadius: 5,
-    marginLeft: 10,
-  },
-  Reject: {
-    color: '#E92828',
-    fontSize: 14,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    backgroundColor: '#FFE5E5',
-    borderRadius: 5,
-    marginLeft: 10,
-  },
-});
+    container: {
+      flex: 1,
+      backgroundColor: '#FFF',
+      borderTopLeftRadius: 20,
+      borderTopRightRadius: 20,
+    },
+    outerContainer: {
+      backgroundColor: '#004db2',
+      height: '100%',
+    },
+    uploadDocContainer: {
+      marginTop: 16,
+    },
+    uploadDocTitle: {
+      fontSize: 16,
+      fontWeight: '700',
+      marginBottom: 8,
+    },
+    imageList: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+    },
+    companyName: {
+      gap: 5,
+      marginVertical: 10,
+    },
+    companyNameText: {
+      fontSize: 20,
+      color: '#2B3348',
+      fontWeight: '600',
+    },
+    countWrapper: {
+      gap: 15,
+    },
+    countBox: {
+      borderWidth: 1,
+      borderColor: '#E5EAF1',
+      gap: 5,
+      paddingHorizontal: 10,
+      paddingVertical: 5,
+      borderRadius: 4,
+    },
+    imgContainer: {
+      margin: 4,
+      borderRadius: 10,
+      backgroundColor: '#EDEDED',
+    },
+    uploadedImage: {
+      width: 100,
+      height: 100,
+      borderRadius: 10,
+    },
+    countValue: {
+      color: 'black',
+      fontWeight: '700',
+    },
+    amtBox: {},
+    amtValue: {
+      fontWeight: '700',
+      color: '#004BAC',
+    },
+    cardFooter: {
+      paddingHorizontal: 15,
+      paddingVertical: 10,
+    },
+    Pending: {
+      color: '#FF9F00',
+      fontSize: 14,
+      paddingHorizontal: 10,
+      paddingVertical: 5,
+      backgroundColor: '#FFF7EA',
+      borderRadius: 5,
+      marginLeft: 10,
+    },
+    Approved: {
+      color: '#43BF57',
+      fontSize: 14,
+      paddingHorizontal: 10,
+      paddingVertical: 5,
+      backgroundColor: '#E2FFE7',
+      borderRadius: 5,
+      marginLeft: 10,
+    },
+    Completed: {
+      color: '#43BF57',
+      fontSize: 14,
+      paddingHorizontal: 10,
+      paddingVertical: 5,
+      backgroundColor: '#E2FFE7',
+      borderRadius: 5,
+      marginLeft: 10,
+    },
+    Cancel: {
+      color: '#E92828',
+      fontSize: 14,
+      paddingHorizontal: 10,
+      paddingVertical: 5,
+      backgroundColor: '#FFE5E5',
+      borderRadius: 5,
+      marginLeft: 10,
+    },
+    Reject: {
+      color: '#E92828',
+      fontSize: 14,
+      paddingHorizontal: 10,
+      paddingVertical: 5,
+      backgroundColor: '#FFE5E5',
+      borderRadius: 5,
+      marginLeft: 10,
+    },
+  });
 
   useEffect(() => {
     getProductDetail();
@@ -193,7 +193,7 @@ MRP: ₹${productDetail?.mrp}
       <BottomSheetModalProvider>
         <View style={[styles.container, { backgroundColor: '#F6F6F6' }]}>
           {isRefreshing ? (
-            <AppLoader
+            <AppLoader2
               loading={isRefreshing}
               color={activeTheme.Secondary}
               size={40}

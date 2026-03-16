@@ -8,13 +8,13 @@ import {
   RefreshControl,
 } from 'react-native';
 import { ActivityIndicator, Avatar } from 'react-native-paper';
-import AppLoader from '../../../../core/components/Loader/AppLoader';
+import AppLoader, { AppLoader2 } from '../../../../core/components/Loader/AppLoader';
 import useActiveTheme from '../../../../core/components/Theme/useActiveTheme';
 import AppNoDataFound from '../../../../core/components/No_Data_Found/AppNoDataFound';
 import Style from '../../../assets/Style/styles';
 import useGlobelStyle from '../../../assets/Style/GlobelStyle';
 import { useTranslation } from 'react-i18next';
-import { ApiCall } from '../../../../services/ServiceProvider';
+import { useCategoryList } from '../../../../api/hooks/useMasters';
 import AppSearchBar from '../../../../core/components/Searchbar/AppSearchBar';
 import Toast from 'react-native-toast-message';
 
@@ -30,30 +30,31 @@ const CategoryList = ({ navigation }) => {
   const [moreDataLoader, setMoreDataLoader] = useState(false);
   let onEndReachedCalledDuringMomentum = false;
 
+  const { mutate: fetchCategory } = useCategoryList();
+
   // Fetch category list with useCallback to prevent unnecessary re-renders
   const getCategoryList = useCallback(async () => {
     setIsRefreshing(true);
     start.current = 0;
     setEndReached(false);
-    try {
-      const result = await ApiCall(
-        { filter: { limit: 20, start: start.current, search_key: searchValue } },
-        'AppCustomerNetwork/segmentList'
-      );
-      if (result.statusCode === 200) {
-        setCategoryList(result.data);
-        if (result.data.length < 20) {setEndReached(true);}
-        start.current += 20;
-      } else {
-        setCategoryList([]);
-        Toast.show({ type: 'error', text1: result.statusMsg, visibilityTime: 6000 });
+
+    fetchCategory({ filter: { limit: 20, start: start.current, search_key: searchValue } }, {
+      onSuccess: (result) => {
+        if (result.status === 200 && result.data.success) {
+          setCategoryList(result.data.result);
+          if (result.data.result.length < 20) { setEndReached(true); }
+          start.current += 20;
+        } else {
+          setCategoryList([]);
+          Toast.show({ type: 'error', text1: result?.data?.statusMsg || 'Error fetching categories', visibilityTime: 6000 });
+        }
+        setIsRefreshing(false);
+      },
+      onError: () => {
+        setIsRefreshing(false);
       }
-    } catch (error) {
-      console.error('Error fetching categories:', error);
-    } finally {
-      setIsRefreshing(false);
-    }
-  }, [searchValue]);
+    });
+  }, [searchValue, fetchCategory]);
 
   useEffect(() => {
     getCategoryList();
@@ -69,23 +70,21 @@ const CategoryList = ({ navigation }) => {
   };
 
   const moreDataHandler = async () => {
-    if (endReached || moreDataLoader) {return;}
+    if (endReached || moreDataLoader) { return; }
     setMoreDataLoader(true);
-    try {
-      const result = await ApiCall(
-        { filter: { limit: 20, start: start.current, search_key: searchValue } },
-        'AppCustomerNetwork/segmentList'
-      );
-      if (result.statusCode === 200) {
-        setCategoryList(prev => [...prev, ...result.data]);
-        if (result.data.length < 20) {setEndReached(true);}
-        start.current += 20;
+    fetchCategory({ filter: { limit: 20, start: start.current, search_key: searchValue } }, {
+      onSuccess: (result) => {
+        if (result.status === 200 && result.data.success) {
+          setCategoryList(prev => [...prev, ...result.data.result]);
+          if (result.data.result.length < 20) { setEndReached(true); }
+          start.current += 20;
+        }
+        setMoreDataLoader(false);
+      },
+      onError: () => {
+        setMoreDataLoader(false);
       }
-    } catch (error) {
-      console.error('Error loading more data:', error);
-    } finally {
-      setMoreDataLoader(false);
-    }
+    });
   };
 
   return (
@@ -102,7 +101,7 @@ const CategoryList = ({ navigation }) => {
       </View>
       <View style={[Style.CategoryCard]}>
         {isRefreshing ? (
-          <AppLoader />
+          <AppLoader2 loading={true} />
         ) : (
           <FlatList
             data={categoryList}
@@ -123,9 +122,9 @@ const CategoryList = ({ navigation }) => {
             refreshControl={<RefreshControl refreshing={isRefreshing} onRefresh={onRefresh} />}
             renderItem={({ item, index }) => (
               <View key={`${item.id}-${index}`} style={[Style.dealerCard, { padding: 10 }]}>
-                <TouchableOpacity onPress={() =>{
-                  item.sub_cat_count > 0 ?
-                  navigation.navigate('SubCategory', item) : navigation.navigate('ProductList', {'cat_id':item.id});}}>
+                <TouchableOpacity onPress={() => {
+                  navigation.navigate('SubCategory', item);
+                }}>
                   <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
                     <Text style={{ color: '#2B3348', fontWeight: '600', textTransform: 'capitalize' }}>{item?.category}</Text>
                     <Avatar.Icon

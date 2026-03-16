@@ -203,7 +203,7 @@ const AddressForm = ({ formParent = 'basicInfo.addressInfo', formTitle = 'Addres
         value={values?.basicInfo?.addressInfo?.pincode}
         onChangeText={(value) => {
           handleChange(`${formParent}.pincode`)(value);
-          if (value?.length == 6) {handleAddressInfo(value, setValues);}
+          // if (value?.length == 6) {handleAddressInfo(value, setValues);}
         }}
         autoCorrect={true}
         keyboardType="numeric"
@@ -273,7 +273,7 @@ const AddressForm = ({ formParent = 'basicInfo.addressInfo', formTitle = 'Addres
       <Caption style={[GlobelStyle.errorMsg]}>{errors?.basicInfo?.addressInfo?.area}</Caption>
     )}
 
-    <View
+    {/* <View
       style={{
         backgroundColor: 'rgba(255,255,255,0.5)',
         borderRadius: 12,
@@ -284,28 +284,7 @@ const AddressForm = ({ formParent = 'basicInfo.addressInfo', formTitle = 'Addres
       <ThemedText style={{ fontSize: 16, fontWeight: '600', marginBottom: 6, color: '#333' }}>
         Fetched Address
       </ThemedText>
-
-      <ThemedText
-        style={{
-          fontSize: 14,
-          color: values?.basicInfo?.addressInfo ? '#555' : '#999',
-          lineHeight: 20,
-        }}
-      >
-        {values?.basicInfo?.addressInfo
-          //  && values?.basicInfo?.addressInfo?.state - removed as address should be visible, even if state not available
-          ? [
-            values?.basicInfo?.addressInfo?.pincode,
-            values?.basicInfo?.addressInfo?.district,
-            values?.basicInfo?.addressInfo?.city,
-            values?.basicInfo?.addressInfo?.state,
-            values?.basicInfo?.addressInfo?.area,
-            // values?.basicInfo?.addressInfo?.country,
-          ]
-            .filter(Boolean)
-            .join(', ')
-          : 'No address available. Try again.'}
-      </ThemedText>
+...
       {(
         (errors?.basicInfo?.addressInfo?.state && touched?.basicInfo?.addressInfo?.state) ||
         (errors?.basicInfo?.addressInfo?.district && touched?.basicInfo?.addressInfo?.district) ||
@@ -321,7 +300,7 @@ const AddressForm = ({ formParent = 'basicInfo.addressInfo', formTitle = 'Addres
         </>
 
         )}
-    </View>
+    </View> */}
   </>;
 };
 

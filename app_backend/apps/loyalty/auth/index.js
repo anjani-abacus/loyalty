@@ -34,8 +34,8 @@ export const generateToken = async (account) => {
     expiresIn: config.jwt.expiresIn,
   });
 
-  await redisClient.set(`user:${account.id}:accessToken`, accessToken, { EX: 60 * 60 * 24 })
-  await redisClient.set(`user:${account.id}:refreshToken`, refreshToken, { EX: 7 * 24 * 60 * 60 });
+  await redisClient.set(`user:${account.id}:app:accessToken`, accessToken, { EX: 60 * 60 * 24 })
+  await redisClient.set(`user:${account.id}:app:refreshToken`, refreshToken, { EX: 7 * 24 * 60 * 60 });
 
   return { accessToken, refreshToken };
 };
@@ -401,7 +401,7 @@ export const registerUser = async (req, res, next) => {
         name,
         mobile,
         ...(formattedDateOfBirth && { birth_date: formattedDateOfBirth }),
-        influencer_type_name,
+        influencer_type_name: influencer_type_name?.toUpperCase() || '',
         referral_code: `REF${Math.floor(100000 + Math.random() * 900000)}`,
         referred_by_code: referral_code || '',
         login_type: 'Loyalty',
@@ -795,8 +795,8 @@ export const logout = async (req, res, next) => {
     }
 
 
-    await redisClient.del(`user:${id}:accessToken`);
-    await redisClient.del(`user:${id}:refreshToken`);
+    await redisClient.del(`user:${id}:app:accessToken`);
+    await redisClient.del(`user:${id}:app:refreshToken`);
 
     if (login_type === "Loyalty") {
       await prisma.influencer_customer.updateMany({

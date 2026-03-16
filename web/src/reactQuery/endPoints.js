@@ -18,6 +18,9 @@ export const DISTRICT_LIST = 'get_all_districts_redis'
 
 export const DEALER_LIST = 'get_all_dealer'
 export const DEALER_DETAIL = id => `get_dealer/${id}`
+export const CREATE_DEALER = 'create_dealer'
+export const UPDATE_DEALER = (id) => `update_dealer/${id}`
+export const DELETE_DEALER = (id) => `delete_dealer/${id}`
 
 
 export const LOGIN = "login"
@@ -34,6 +37,7 @@ export const DELETE_CATEGORY= (id)=>`category/${id}`
 
 export const BONUS_LIST = "get_all_bonus_points"
 export const UPDATE_BONUS=(id)=> `update_bonus_points_status/${id}`
+export const UPDATE_BONUS_POINTS = (id) => `update_bonus_points/${id}`
 
 
 

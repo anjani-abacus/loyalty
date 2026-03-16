@@ -1,5 +1,5 @@
 // useInfluencers.js
-import { createInfluencer, fetchDealerDetail, fetchDealers, fetchInfluencers, fetchLedger, fetchRedeemHistory, fetchScanHistory, updateInfluencer, updateKycStatus, updateLoginStatus ,updateProfileStatus,updateTypeChange } from "../../../reactQuery/services/influencers/influencersApi";
+import { createInfluencer, fetchDealerDetail, fetchDealers, fetchInfluencers, fetchLedger, fetchRedeemHistory, fetchScanHistory, updateInfluencer, updateKycStatus, updateLoginStatus ,updateProfileStatus,updateTypeChange, createDealer, updateDealer, deleteDealer } from "../../../reactQuery/services/influencers/influencersApi";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import moment from "moment/moment";
 import { copyContent } from "../../../utils";
@@ -167,3 +167,18 @@ export const useRedeemHistoryList = (id) => {
 
 return { redeemHistoryData:data?.data, isLoading, refetch, isFetching }
 };
+
+export const useCreateDealer = () =>
+  useMutation({
+    mutationFn: (payload) => createDealer(payload),
+  });
+
+export const useUpdateDealer = () =>
+  useMutation({
+    mutationFn: (payload) => updateDealer(payload),
+  });
+
+export const useDeleteDealer = () =>
+  useMutation({
+    mutationFn: (id) => deleteDealer(id),
+  });

@@ -85,31 +85,31 @@ export const updateCompanyContact = async (req, res,next) => {
     : null;
 
       try {
-        const newENTRY = await prisma.company_contact_master.update({
-            where:{
-                id:1
-            },
-          data: {
+        const contactData = {
               last_updated_on:new Date(),
               last_updated_by:id,
               last_updated_by_name:name,
               company_name,
               email,
               address,
-                contact_number,
-                contact_number_2,
-                about_us,
-               ...(profile_img ? {profile_img} : {}),  
-                website_url,
-                iframe_url_map,
-                facebook_url,
-                twitter_url,
-                instagram_url,
-                linkedin_url,
-                youtube_url
-    }
-        })
-        return res.status(201).json({status:true,message :"Succesfully Updated!",data:newENTRY})
+              contact_number,
+              contact_number_2,
+              about_us,
+              ...(profile_img ? {profile_img} : {}),
+              website_url,
+              iframe_url_map,
+              facebook_url,
+              twitter_url,
+              instagram_url,
+              linkedin_url,
+              youtube_url
+        };
+        const newENTRY = await prisma.company_contact_master.upsert({
+            where: { id: 1 },
+            update: contactData,
+            create: { id: 1, created_by: id, created_by_name: name, ...contactData },
+        });
+        return res.status(200).json({status:true,message :"Succesfully Updated!",data:newENTRY})
 
     }catch (error){
         next(error)

@@ -18,7 +18,7 @@ export const authenticateToken = async (req, res, next) => {
                     return res.status(403).json({ message: 'Invalid access token' });
                 }
 
-                const storedToken = await redisClient.get(`user:${decodedUser.id}:accessToken`);
+                const storedToken = await redisClient.get(`user:${decodedUser.id}:web:accessToken`);
                 if (storedToken !== accessToken) {
                     return res.status(403).json({ message: 'Token expired or invalid' });
                 }
@@ -39,7 +39,7 @@ export const authenticateToken = async (req, res, next) => {
                     {  algorithm: 'HS256' }
                 );
 
-                await redisClient.setEx(`user:${decodedUser.id}:accessToken`, 60 * 60 * 24, newAccessToken);
+                await redisClient.setEx(`user:${decodedUser.id}:web:accessToken`, 60 * 60 * 24, newAccessToken);
 
                 res.setHeader('x-access-token', newAccessToken);
                 req.user = decodedUser;

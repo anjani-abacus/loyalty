@@ -1,6 +1,6 @@
 // import { IN_API } from "../../../api/api";
 import client from "../../axiosInstance";
-import { CREATE_INFLUENCER, INFLUENCER_DETAIL, INFLUENCER_LIST, INFLUENCER_LOGIN_STATUS, UPDATE_INFLUENCER ,INFLUENCER_TYPE_CHANGE, UPDATE_INFLUENCER_KYC, UPDATE_INFLUENCER_PROFILE, LEDGER_USER_WISE, SCAN_HISTORY_USER_WISE, REDEEM_HISTORY_USER_WISE, DEALER_LIST, DEALER_DETAIL} from "../../endPoints";
+import { CREATE_INFLUENCER, INFLUENCER_DETAIL, INFLUENCER_LIST, INFLUENCER_LOGIN_STATUS, UPDATE_INFLUENCER ,INFLUENCER_TYPE_CHANGE, UPDATE_INFLUENCER_KYC, UPDATE_INFLUENCER_PROFILE, LEDGER_USER_WISE, SCAN_HISTORY_USER_WISE, REDEEM_HISTORY_USER_WISE, DEALER_LIST, DEALER_DETAIL, CREATE_DEALER, UPDATE_DEALER, DELETE_DEALER} from "../../endPoints";
 
 export const fetchInfluencers = async (params) => {
   const {data} = await client.post(INFLUENCER_LIST, params)
@@ -55,6 +55,22 @@ export const createInfluencer = async payload => {
     const {data} = await client.get(DEALER_DETAIL(id))
     return data;
   }
+
+export const createDealer = async (payload) => {
+  const { data } = await client.post(CREATE_DEALER, payload);
+  return data;
+};
+
+export const updateDealer = async (request) => {
+  const { id, ...payload } = request;
+  const { data } = await client.put(UPDATE_DEALER(id), payload);
+  return data;
+};
+
+export const deleteDealer = async (id) => {
+  const { data } = await client.delete(DELETE_DEALER(id));
+  return data;
+};
 
   export const fetchLedger = async id => {
     const {data} = await client.get(LEDGER_USER_WISE(id))

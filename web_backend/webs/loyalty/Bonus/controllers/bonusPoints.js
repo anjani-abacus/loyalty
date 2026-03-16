@@ -236,7 +236,11 @@ export const getBonusPoints = async (req, res, next) => {
             orderBy: { date_created: 'desc' },
             include: {
                 bonus_product_point: {
+                    where: { del: false },
                     select: {
+                        id: true,
+                        point_category_id: true,
+                        point_category_name: true,
                         point: true
                     }
                 }
@@ -274,6 +278,74 @@ export const softDeleteBonusPoints = async (req, res, next) => {
         next(error);
     }
 }
+
+export const updateBonusPoints = async (req, res, next) => {
+    const { id } = req.params;
+    const {
+        influencer_type,
+        title,
+        start_date,
+        end_date,
+        state = [],
+        district = [],
+        points = [],
+    } = req.body;
+    const { id: userId, name: userName } = req.user;
+    try {
+        const existing = await prisma.bonus_master.findFirst({
+            where: { id: Number(id), del: false }
+        });
+        if (!existing) {
+            return res.status(404).json({ status: false, message: "Bonus not found" });
+        }
+
+        if (title && influencer_type) {
+            const conflict = await prisma.bonus_master.findFirst({
+                where: { title, influencer_type, id: { not: Number(id) }, del: false }
+            });
+            if (conflict) {
+                return res.status(400).json({ status: false, message: "Bonus with this title already exists" });
+            }
+        }
+
+        await prisma.bonus_master.update({
+            where: { id: Number(id) },
+            data: {
+                influencer_type,
+                title,
+                start_date: start_date ? new Date(start_date) : null,
+                end_date: end_date ? new Date(end_date) : null,
+                state,
+                district,
+                updated_by: userId,
+                updated_at: new Date()
+            }
+        });
+
+        const pointsArray = Array.isArray(points) ? points : [points];
+        const validPoints = pointsArray.filter(p => p && p.point_category_id && Number(p.point) > 0);
+        if (validPoints.length > 0) {
+            await prisma.bonus_product_point.updateMany({
+                where: { bonus_id: Number(id) },
+                data: { del: true }
+            });
+            const pointsData = validPoints.map(p => ({
+                bonus_id: Number(id),
+                point_category_id: Number(p.point_category_id),
+                point_category_name: p.point_category_name,
+                point: Number(p.point),
+                created_by_id: userId,
+                created_by_name: userName,
+            }));
+            await prisma.bonus_product_point.createMany({ data: pointsData });
+        }
+
+        res.status(200).json({ status: true, message: "Bonus updated successfully" });
+    } catch (error) {
+        console.error(error);
+        next(error);
+    }
+};
 
 export const updateBonusPointsStatus = async (req, res, next) => {
     const { id } = req.params;

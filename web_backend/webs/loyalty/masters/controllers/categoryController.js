@@ -173,7 +173,7 @@ export const getAllSUBCategory = async (req, res, next) => {
                     category: {
                         select: {
                             id: true,
-                            category_name: true
+                            category: true
                         }
                     }
                 }

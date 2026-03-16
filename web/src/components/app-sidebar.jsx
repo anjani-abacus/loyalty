@@ -27,8 +27,6 @@ import { NavMain } from "@/components/nav-main"
 import { NavProfile } from "@/components/nav-profile"
 import { TeamSwitcher } from "@/components/team-switcher"
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail } from "@/components/ui/sidebar"
-import { isAction } from "@reduxjs/toolkit"
-import { useEffect } from "react"
 //  const { data: types = [], isLoading } = useInfluencerTypes()
 // This is sample data.
 const data = {
@@ -235,12 +233,12 @@ navMain: [
 }
 
 function AppSidebar({ ...props }) {
-  
-  const moduleData = JSON.parse(localStorage.getItem("modules"))
-
-  useEffect(()=>{
-    console.log(moduleData)
-  }, [])
+  const loginDetails = JSON.parse(localStorage.getItem("loginDetails") || "{}")
+  const userData = {
+    name: loginDetails?.name || loginDetails?.username || "User",
+    email: loginDetails?.email || loginDetails?.contact_01 || "",
+    avatar: loginDetails?.profile_img || null,
+  }
 
   return (
     <Sidebar collapsible="icon" {...props}>
@@ -248,15 +246,13 @@ function AppSidebar({ ...props }) {
         <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
       <SidebarContent>
-        {/* <NavMain dropdownLabel="CRM" items={moduleData}/> */}
         <NavMain dropdownLabel="CRM" items={data.navMain}/>
         <NavMain dropdownLabel="REPORTS" items={data.reports} />
         <NavMain dropdownLabel="USER MANAGEMENT" items={data.users} />
         <NavMain dropdownLabel="APP MANAGEMENT" items={data.apps} />
-
       </SidebarContent>
       <SidebarFooter>
-        <NavProfile data={data.reports} />
+        <NavProfile data={userData} />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

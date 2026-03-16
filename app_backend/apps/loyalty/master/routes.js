@@ -1,5 +1,5 @@
 import express from 'express';
-import { getProductList, getGiftGalleryList, getInfluencerLedger, getCategoryList, getDocumentCatalogueList, getInfluencerBadgeList, getFaqQuestions, getTutorialVideoList, getContactDetail, getAboutDetail, getEarnedPoints, getStates, getDistricts, getPincodeDetails, UpcomingGifts, getBannerList, getHighLightedOffers } from './index.js';
+import { getProductList, getGiftGalleryList, getInfluencerLedger, getCategoryList, getSubCategoryList, getDocumentCatalogueList, getInfluencerBadgeList, getFaqQuestions, getTutorialVideoList, getContactDetail, getAboutDetail, getEarnedPoints, getStates, getDistricts, getPincodeDetails, UpcomingGifts, getBannerList, getHighLightedOffers } from './index.js';
 import { verifyToken } from '@shared/middlewares/auth.middleware.js';
 import { asyncHandler } from '@shared/helpers/asyncHandler.js'
 import { payloadCheck } from '@shared/helpers/commonHandler.js';
@@ -37,6 +37,12 @@ router.post(
     verifyToken,
     payloadCheck(getCategoryList),
     asyncHandler(getCategoryList)
+);
+
+router.post(
+    '/subcategory-list',
+    verifyToken,
+    asyncHandler(getSubCategoryList)
 );
 
 router.post(

@@ -1,5 +1,5 @@
 
-import {fetchBonusList,updateBonusStatus ,createBonusPoints } from "../../../reactQuery/services/bonusPoints/bonusPointsApi";
+import {fetchBonusList, updateBonusStatus, createBonusPoints, updateBonusPoints } from "../../../reactQuery/services/bonusPoints/bonusPointsApi";
 import { useMutation } from "@tanstack/react-query";
 
 export const useBonusPoints = () => {
@@ -13,13 +13,14 @@ export const useBonusPoints = () => {
     { key: "Active", count: data?.totalActive || 0 },
       { key: "InActive", count: data?.totalInactive || 0 } ],
 
-        fetchBonusData:mutate, 
+        fetchBonusData:mutate,
         mutateAsync
         , error,
-        isLoading: isPending, 
-        isSuccess, 
+        isLoading: isPending,
+        isPending,
+        isSuccess,
         onSuccess,
-        reset } 
+        reset }
 
   // return {  tabListData: [{key:'Active', count:10}, {key:'InActive', count:20}], isLoading, refetch, isFetching };
 };
@@ -35,10 +36,11 @@ export const useUpdateBonusStatus = () => {
 
 export const useCreateBonusPoints = () =>
   useMutation({
-    mutationFn: (payload) => createBonusPoints(payload, {
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
-  }),
+    mutationFn: (payload) => createBonusPoints(payload),
+  });
+
+export const useUpdateBonusPoints = () =>
+  useMutation({
+    mutationFn: (payload) => updateBonusPoints(payload),
   });
 

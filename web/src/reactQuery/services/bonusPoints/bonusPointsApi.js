@@ -1,7 +1,7 @@
 
 import client from "../../axiosInstance";
 
-import { BADGE_LIST, BONUS_LIST, CREATE_BONUS_POINTS, UPDATE_BONUS, UPDATE_BADGE, UPDATE_SPIN, CREATE_SPIN_WIN, SPIN_LIST, CREATE_BADGE, BADGE_ASSIGNED_INFLUENCER, UPDATE_SPIN_DETAILS } from "../../endPoints";
+import { BADGE_LIST, BONUS_LIST, CREATE_BONUS_POINTS, UPDATE_BONUS, UPDATE_BONUS_POINTS, UPDATE_BADGE, UPDATE_SPIN, CREATE_SPIN_WIN, SPIN_LIST, CREATE_BADGE, BADGE_ASSIGNED_INFLUENCER, UPDATE_SPIN_DETAILS } from "../../endPoints";
 
 
 // Fetch all categories
@@ -68,6 +68,12 @@ export const createBonusPoints = async payload => {
     const {data} = await client.post(CREATE_BONUS_POINTS, payload)
     return data;
   }
+
+export const updateBonusPoints = async (request) => {
+  const { id, ...payload } = request;
+  const { data } = await client.put(UPDATE_BONUS_POINTS(id), payload);
+  return data;
+};
 
 export const fetchCreateSpinSlab = async payload => {
   const {data} = await client.post(CREATE_SPIN_WIN, payload)

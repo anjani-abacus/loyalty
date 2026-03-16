@@ -14,7 +14,7 @@ export const verifyToken = async (req, res, next) => {
     if (!decoded)
       return res.status(401).json({ success: false, message: "Invalid token" });
 
-    const storedToken = await redisClient.get(`user:${decoded.id}:accessToken`);
+    const storedToken = await redisClient.get(`user:${decoded.id}:app:accessToken`);
     if (!storedToken || storedToken !== token) {
       return res.status(401).json({ success: false, deactivated: true, message: "You'r account has been deactivated, contact to admin!" });
     }

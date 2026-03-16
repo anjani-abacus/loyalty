@@ -32,30 +32,39 @@ const GiftRedeemList = () => {
     const [alertValue, setAlertValue] = useState(null)
     const isFirstRender = useRef(true)
 
-    const { mutate: updateRedeem, isLoading: isUpdatingRedeem } = useUpdateRedeemRequest();
-const { mutate: updateShipping, isLoading: isUpdatingShipping } = useUpdateInfluencerShipping();
+    const { mutate: updateRedeem, isPending: isUpdatingRedeem } = useUpdateRedeemRequest();
+const { mutate: updateShipping, isPending: isUpdatingShipping } = useUpdateInfluencerShipping();
 
 const isMutating = isUpdatingRedeem || isUpdatingShipping;
 
+const GIFT_STATUS_TABS = ["SHIPPED", "DELIVERED"];
 
   useEffect(() => {
-     fetchRequestListData({
-       page :page,
-       gift_type:"GIFT",  
-       limit:limit,
-       filters: { ...filter,
-          action_status: tabValue.toUpperCase(),
-          gift_type:"GIFT", },
-      });
+    const tab = tabValue.toUpperCase();
+    const isGiftTab = GIFT_STATUS_TABS.includes(tab);
+    fetchRequestListData({
+      page,
+      gift_type: "GIFT",
+      limit,
+      filters: {
+        ...filter,
+        ...(isGiftTab
+          ? { gift_status: tab, action_status: "APPROVED" }
+          : { action_status: tab }),
+        gift_type: "GIFT",
+      },
+    });
   }, [tabValue, filter, page]);
 
   const onRefresh = () => {
-  
+    const tab = tabValue.toUpperCase();
+    const isGiftTab = GIFT_STATUS_TABS.includes(tab);
     setFilter({
       ...filter,
-      action_status: tabValue.toUpperCase(),
+      ...(isGiftTab
+        ? { gift_status: tab, action_status: "APPROVED" }
+        : { action_status: tab }),
     });
-
   };
   //   const handleStatusChange = (value, status) => {
   //   setAlertValue({value, status})

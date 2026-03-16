@@ -84,7 +84,7 @@ export const useContactData = () => {
   });
 
   const updateContactData = ({ id, payload, onSuccess, onError }) => {
-    mutation.mutate({ id, payload, onSuccess, onError });
+    mutation.mutate({ id, payload }, { onSuccess, onError });
   };
 
   return { contactData: data, isLoading, updateContactData };

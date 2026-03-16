@@ -2,239 +2,150 @@ import { DataTable } from "../../../layouts/DataTable";
 import Container from "../../../components/ui/container";
 import { useParams } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
-import { ConfirmationBox, ConfirmationDialog } from "../../../components/confirmationDialog";
+import { ConfirmationDialog } from "../../../components/confirmationDialog";
 import { FilterDialog } from "../../../components/filterDialog";
 import { getColumns } from "./Columns";
-
-import { useDealers, useInfluencers, useUpdateInfluencer ,useUpdateLoginStatus ,useUpdateTypeChange} from "./useData";
+import { useDealers, useCreateDealer, useUpdateDealer, useDeleteDealer } from "./useData";
 import TableSkeleton from "../../../skeleton/tableSkeleton";
-import { EXPORT_INFLUENCER_FILE, EXPORT_INFLUENCER_SAMPLE_FILE, IMPORT_INFLUENCER_FILE } from "../../../reactQuery/endPoints";
-
-// import {  useQueryClient } from "@tanstack/react-query";
+import DealerFormModal from "./pages/DealerFormModal";
 
 const CustomerNetwork = () => {
   const { influencerCategory } = useParams();
-  const [selectedType, setSelectedType] = useState("");
 
-  const [tabValue, setTabValue] = useState("PENDING");
-  const isFirstRender = useRef(true)
-  const [filter, setFilter] = useState({})
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(50);
-  const { fetchDealersData, dealersData, total, tabListData, isPending } = useDealers();
-  const [start, setStart] = useState(0)
-  const [alertValue, setAlertValue] = useState(null)
-  const [showAlertDialog, setShowAlertDialog] = useState(false);
-  const [showStatusConfirm, setShowStatusConfirm] = useState(false);
-  const [selectedRow, setSelectedRow] = useState(null);
+  const [filter, setFilter] = useState({});
+  const [start, setStart] = useState(0);
 
-  const { mutate: updateInfluencer } = useUpdateInfluencer()
-  const{mutate :updateLoginStatus }=useUpdateLoginStatus()
-  const {mutate:updateTypeChange}= useUpdateTypeChange()
+  const [modalType, setModalType] = useState("add");
+  const [showFormModal, setShowFormModal] = useState(false);
+  const [selectedDealer, setSelectedDealer] = useState(null);
 
-useEffect(() => {
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [deleteDealerId, setDeleteDealerId] = useState(null);
+
+  const { fetchDealersData, dealersData, total, isPending } = useDealers();
+  const { mutate: createDealer, isPending: isCreating } = useCreateDealer();
+  const { mutate: updateDealer, isPending: isUpdating } = useUpdateDealer();
+  const { mutate: deleteDealer } = useDeleteDealer();
+
+  const isFormLoading = modalType === "add" ? isCreating : isUpdating;
+
+  const loadDealers = (overrides = {}) => {
     fetchDealersData({
       page,
       limit,
-      filters: { 
-        ...filter,
-        status_of_profile: tabValue,
-        // influencer_type_name: influencerCategory?.charAt(0).toUpperCase() + influencerCategory?.slice(1) 
-        influencer_type_name: influencerCategory?.toUpperCase() || ""
-
-      },
+      filters: { ...filter, ...overrides },
     });
-}, [tabValue, filter, page, influencerCategory]);
-
-const onRefresh = () => {
-  setFilter({
-    ...filter,
-    status_of_profile: tabValue,
-    influencer_type_name: influencerCategory?.toUpperCase() || "",
-  });
-  setPage(1);
-};
-
-  const handleStatusChange = (row) => {
-    setSelectedRow(row);
-    setShowStatusConfirm(true);
   };
 
+  useEffect(() => {
+    loadDealers();
+  }, [page, limit, filter]);
 
- const confirmStatusChange = () => {
-    const newStatus = !selectedRow.active_status;
-
-    updateLoginStatus(
-      {
-        id: selectedRow.id,
-        payload: { active_status: newStatus },
-      },
-      {
-        onSuccess: () => {
-          setShowStatusConfirm(false);
-          fetchDealersData({
-            page,
-            limit,
-            filters: {
-              ...filter,
-              status_of_profile: tabValue,
-              influencer_type_name: influencerCategory?.toUpperCase() || "",
-            },
-          });
-        },
-          onError: () => {
-        setShowStatusConfirm(false);
-      },
-
-        
-      }
-    );
+  const onRefresh = () => {
+    setFilter({});
+    setPage(1);
   };
 
+  // ── Add ────────────────────────────────────────────────────────────────────
+  const handleAdd = () => {
+    setModalType("add");
+    setSelectedDealer(null);
+    setShowFormModal(true);
+  };
 
+  // ── Edit ───────────────────────────────────────────────────────────────────
+  const handleEdit = (row) => {
+    setModalType("edit");
+    setSelectedDealer(row);
+    setShowFormModal(true);
+  };
 
- const handleTypeChange = (value, row) => {
-  setSelectedType(value);
-  setAlertValue({ value, id: row?.id }); // ✅ store id instead of mobile
-  setShowAlertDialog(true);
-};
+  // ── Delete ─────────────────────────────────────────────────────────────────
+  const handleDelete = (id) => {
+    setDeleteDealerId(id);
+    setShowDeleteConfirm(true);
+  };
 
-
-  // const handleResult = (action) => {
-  //   if (action === "continue" && alertValue) {
-  //     updateInfluencer(
-  //       {
-  //         mobile: alertValue.mobile,
-  //         influencer_type_name: alertValue.value, 
-  //       },
-  //       {
-  //         onSuccess: () => {
-  //           setShowAlertDialog(false);
-  //           fetchDealersData({
-  //             page,
-  //             limit,
-  //             filters: {
-  //               ...filter,
-  //               status_of_profile: tabValue,
-  //               influencer_type_name: influencerCategory?.toUpperCase() || "",
-  //             },
-  //           });
-  //         },
-  //       }
-  //     );
-  //   } else {
-  //     setShowAlertDialog(false);
-  //   }
-  // };
-
-const handleResult = (action) => {
-  if (action === "continue" && alertValue) {
-    updateTypeChange({
-        id: alertValue.id, 
-        payload: { influencer_type_name: alertValue.value },
-      }, {
+  const confirmDelete = (action) => {
+    if (action === "continue" && deleteDealerId) {
+      deleteDealer(deleteDealerId, {
         onSuccess: () => {
-          setShowAlertDialog(false);
-          
-          fetchDealersData({
-            page,
-            limit,
-            filters: {
-              ...filter,
-              status_of_profile: tabValue,
-              influencer_type_name: influencerCategory?.toUpperCase() || "",
-            },
-          });
+          setShowDeleteConfirm(false);
+          setDeleteDealerId(null);
+          loadDealers();
         },
-        onError: () => setShowAlertDialog(false),
-      })
-    // useUpdateType
-    // updateInfluencer(
-    //   {
-    //     id: alertValue.id, 
-    //     payload: { influencer_type_name: alertValue.value },
-    //   },
-    //   {
-    //     onSuccess: () => {
-    //       setShowAlertDialog(false);
-          
-    //       fetchDealersData({
-    //         page,
-    //         limit,
-    //         filters: {
-    //           ...filter,
-    //           status_of_profile: tabValue,
-    //           influencer_type_name: influencerCategory?.toUpperCase() || "",
-    //         },
-    //       });
-    //     },
-    //     onError: () => setShowAlertDialog(false),
-    //   }
-    // );
-  } else {
-    setShowAlertDialog(false);
-  }
-};
+        onError: () => {
+          setShowDeleteConfirm(false);
+        },
+      });
+    } else {
+      setShowDeleteConfirm(false);
+    }
+  };
 
+  // ── Save (create or update) ────────────────────────────────────────────────
+  const onSave = (payload) => {
+    if (modalType === "add") {
+      createDealer(payload, {
+        onSuccess: () => {
+          setShowFormModal(false);
+          loadDealers();
+        },
+      });
+    } else {
+      updateDealer(payload, {
+        onSuccess: () => {
+          setShowFormModal(false);
+          loadDealers();
+        },
+      });
+    }
+  };
 
-  const alertSubmitHandler = () => {}  
-
-return (
-  <Container>
+  return (
+    <Container>
       <>
         <DataTable
-        isLoading={isPending}
+          isLoading={isPending}
           pageTitle={influencerCategory}
-          userData={ dealersData ||[]}
+          userData={dealersData || []}
           setFilter={setFilter}
-           renderSkeleton={() => <TableSkeleton columns={getColumns({})} rows={limit} />}
-          columns={getColumns({selectedType, setSelectedType, handleTypeChange,handleStatusChange, limit, page})}
-          // tabListData={tabListData}
-          alertSubmitHandler={alertSubmitHandler}
-          defaultValue={tabValue}
-          setTabValue={setTabValue}
+          renderSkeleton={() => <TableSkeleton columns={getColumns({})} rows={limit} />}
+          columns={getColumns({ handleEdit, handleDelete, limit, page })}
+          handleAdd={handleAdd}
+          onRefresh={onRefresh}
           startPoint={start}
           setStartPoint={setStart}
-        
-          // downloadUrl={EXPORT_INFLUENCER_FILE}
-          // downloadSampleUrl={EXPORT_INFLUENCER_SAMPLE_FILE}
-          // uploadUrl={IMPORT_INFLUENCER_FILE}
-          enableUploadCsv={true}
-          onRefresh={onRefresh}
-          alertValue={alertValue}
-          // buttonNavigation={"/influencerAdd"}
-
           page={page}
           limit={limit}
           setPage={setPage}
           setLimit={setLimit}
-          total={tabListData?.filter((item)=>(item?.key==tabValue))[0]?.count}
+          total={total}
         />
+
         <FilterDialog />
 
+        <DealerFormModal
+          modalType={modalType}
+          open={showFormModal}
+          setOpen={setShowFormModal}
+          dealer={selectedDealer}
+          setSelectedDealer={setSelectedDealer}
+          onSave={onSave}
+          isLoading={isFormLoading}
+        />
+
         <ConfirmationDialog
-        openDialog={showAlertDialog}
-        setOpenDialog={setShowAlertDialog}
-        onResult={handleResult}
-      />
-
-      <ConfirmationBox
-        openDialog={showStatusConfirm}
-        setOpenDialog={setShowStatusConfirm}
-        title="Change Login Status"
-        message={`Are you sure you want to ${
-          selectedRow?.active_status ? "deactivate" : "activate"
-        } this influencer?`}
-        onResult={confirmStatusChange}
-        onCancel={() => setShowStatusConfirm(false)}
-      />
-
-
-     
+          openDialog={showDeleteConfirm}
+          setOpenDialog={setShowDeleteConfirm}
+          value={deleteDealerId}
+          onResult={confirmDelete}
+        />
       </>
-  
-  </Container>
-);
+    </Container>
+  );
 };
 
 export default CustomerNetwork;
